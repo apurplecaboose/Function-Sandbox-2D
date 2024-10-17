@@ -7,6 +7,7 @@ public class ControlPoints : MonoBehaviour
 {
     [SerializeField] SubSigilController _sigilMaster;
     public int ControlPointNumber;
+    public Acc_n_Failure F_in_Chat;
 
     private void Awake()
     {
@@ -20,6 +21,7 @@ public class ControlPoints : MonoBehaviour
             if(_sigilMaster.CurrentControlPointNumber != ControlPointNumber)
             {
                 Debug.Log("Sigil FAILED Missed Controll Point");
+                F_in_Chat.FAIL();
             }
         }
     }

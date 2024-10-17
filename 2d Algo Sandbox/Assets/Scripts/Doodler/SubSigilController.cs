@@ -9,9 +9,10 @@ public class SubSigilController : MonoBehaviour
     public GameObject NextSubSigil;
 
     public DoodleMaster dood;
+    public Acc_n_Failure F_in_Chat; 
     private void Awake()
     {
-        _ExpectedC_PointNumb = transform.childCount;
+        _ExpectedC_PointNumb = transform.childCount - 1; //minus acc
         CurrentControlPointNumber = 0;
     }
     void Update()
@@ -28,6 +29,13 @@ public class SubSigilController : MonoBehaviour
                 }
                 else
                 {
+                    if (F_in_Chat.AccPercentage <= 25f)
+                    {
+                        Debug.Log("too innaccurate. Accuracy:" + F_in_Chat.AccPercentage);
+                        F_in_Chat.FAIL();
+                        return;
+                    }
+                    Debug.Log("Accuracy:" + F_in_Chat.AccPercentage);
                     dood.SetFinalColor(Color.red, 1);
                     Destroy(transform.parent.gameObject);
                 }
@@ -35,6 +43,7 @@ public class SubSigilController : MonoBehaviour
             else
             {
                 Debug.Log("Sigil FAILED Missed Controll Point");
+                F_in_Chat.FAIL();
             }
         }
     }
