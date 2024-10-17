@@ -36,7 +36,7 @@ public class SubSigilController : MonoBehaviour
                         return;
                     }
                     Debug.Log("Accuracy:" + F_in_Chat.AccPercentage);
-                    dood.SetFinalColor(Color.red, 1);
+                    dood.SetFinalColor(Color.yellow, 1);
                     Destroy(transform.parent.gameObject);
                 }
             }
