@@ -1,11 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class DoodleMasterOCR : MonoBehaviour
 {
+    public float MaxLineLength = 750;
     public DoodleOCR DoodlerPrefab;
     DoodleOCR _currentDoodler;
     int _DoodleSortOrder = 50;
@@ -27,7 +27,6 @@ public class DoodleMasterOCR : MonoBehaviour
     void Update()
     {
         TEMPFUNCTIONS();
-
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             _currentDoodler = Instantiate(DoodlerPrefab, this.transform); // instantiate as a child of the doodle master.
@@ -35,15 +34,21 @@ public class DoodleMasterOCR : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
-            DrawingOutput.AddRange(_currentDoodler.PrintPointOutput(0));
-            _currentDoodler.SetLineColor(Color.cyan); //optional color change
-            _currentDoodler = null;
+            if (_currentDoodler == null) return;
+            EndDoodlin();
         }
         if (_currentDoodler != null)
         {
             Vector2 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             _currentDoodler.UpdateLine(mousepos);
+            if (_currentDoodler.IsLineTooLong(MaxLineLength)) EndDoodlin();
         }
+    }
+    void EndDoodlin()
+    {
+        DrawingOutput.AddRange(_currentDoodler.PrintPointOutput(0));
+        _currentDoodler.SetLineColor(Color.cyan); //optional color change
+        _currentDoodler = null;
     }
     public void SetFinalColor(Color targetColor, float targetAlpha)
     {
