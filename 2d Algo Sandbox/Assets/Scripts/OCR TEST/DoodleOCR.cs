@@ -6,13 +6,13 @@ public class DoodleOCR : MonoBehaviour
 {
     LineRenderer _LineRend;
     List<Vector2> _PointsListRaw;
-    float _MinPointDistance = 0.25f; // do not go below 0.2f
+    float _MinPointDistance = 0.1f; // do not go below 0.2f
     float _LineLength;
     void OnDrawGizmos()
     {
         foreach (Vector2 vec2point in _PointsListRaw) 
             {
-            Gizmos.DrawSphere(new Vector3(vec2point.x, vec2point.y, 0), 0.025f);
+            Gizmos.DrawSphere(new Vector3(vec2point.x, vec2point.y, 0), 0.1f);
             }
     }
     void Awake()

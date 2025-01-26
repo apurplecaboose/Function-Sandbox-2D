@@ -290,7 +290,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DOODLEMASTERCOMPONENT: {fileID: 1150252611}
   _DoodlePointOutputVector2: []
-  AABB_Bounds: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1150252610
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,6 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3965e34a12f240b43be3b9ffc72cf430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxLineLength: 1000
   DoodlerPrefab: {fileID: 2938028090718718157, guid: 95b90c1f67c125b4fab317989cbbb0df, type: 3}
   DrawingOutput: []
   _DoodlesList: []
