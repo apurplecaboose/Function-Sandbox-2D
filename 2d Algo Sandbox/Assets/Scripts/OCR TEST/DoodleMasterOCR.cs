@@ -11,6 +11,7 @@ public class DoodleMasterOCR : MonoBehaviour
     int _DoodleSortOrder = 50;
 
     public List<Vector3> DrawingOutput; // x,y,doodlenumber
+    public PatternStorageObject PatternScriptableObject;
 
     [SerializeField] List<DoodleOCR> _DoodlesList;
     void TEMPFUNCTIONS()
@@ -21,7 +22,17 @@ public class DoodleMasterOCR : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SetFinalColor(Color.red, 1);
+            // USED for transfering pattern to a list scriptable Object
+            List<Vector2> tempoutputlist = new List<Vector2>();
+            foreach (Vector3 datapoint in DrawingOutput)
+            {
+                if (datapoint.z == 0)
+                {
+                    tempoutputlist.Add(new Vector2(datapoint.x, datapoint.y));
+                }
+            }
+            PatternScriptableObject.ReferenceShapeData = tempoutputlist;
+            //SetFinalColor(Color.red, 1);
         }
     }
     void Update()

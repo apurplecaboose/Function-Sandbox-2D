@@ -12,7 +12,7 @@ public class DoodleOCR : MonoBehaviour
     {
         foreach (Vector2 vec2point in _PointsListRaw) 
             {
-            Gizmos.DrawSphere(new Vector3(vec2point.x, vec2point.y, 0), 0.1f);
+            Gizmos.DrawSphere(new Vector3(vec2point.x, vec2point.y, 0), 0.05f);
             }
     }
     void Awake()
@@ -32,8 +32,8 @@ public class DoodleOCR : MonoBehaviour
         if (pointsDistance < _MinPointDistance) return; //less than min threshold do not need to record
 
         Vector2 unitvector = inputmouseposition - lastrecordedpoint;
-        unitvector = unitvector.normalized; 
-        
+        unitvector = unitvector.normalized;
+
         if (pointsDistance >= 2 * _MinPointDistance)
         {
             int interpolationPointsCount = Mathf.FloorToInt(pointsDistance / _MinPointDistance);
