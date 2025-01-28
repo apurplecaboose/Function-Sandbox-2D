@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class OCR_K_nearestneighbor : MonoBehaviour
@@ -58,6 +59,9 @@ public class OCR_K_nearestneighbor : MonoBehaviour
             foreach (var keypat in patternlist)
             {
                 //GPT says to speed up I can use miniheap only store values into a miniheap if they are the k number of smallest items then i can avoid the sort function
+                //or heap into miniheap. When miniheap exceeds certian size remove max values.
+                //EXAMPLE: if (minHeap.Count > k)minHeap.Remove(minHeap.Max);
+
                 string currentpatternname = keypat.Pattern_Name;
                 foreach (Vector2 p_point in keypat.ReferenceShapeData)
                 {
