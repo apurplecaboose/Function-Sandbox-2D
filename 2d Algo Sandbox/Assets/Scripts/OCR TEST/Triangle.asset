@@ -10,6 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a3d77d9ba3c60a409ec2035beec82e6, type: 3}
-  m_Name: Triangle Ref Shape
+  m_Name: Triangle
   m_EditorClassIdentifier: 
+  Pattern_Name: TRIANGLE!!!
   ReferenceShapeData: []

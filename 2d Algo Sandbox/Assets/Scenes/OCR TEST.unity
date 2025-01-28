@@ -491,14 +491,13 @@ GameObject:
   - component: {fileID: 792137507}
   - component: {fileID: 792137506}
   - component: {fileID: 792137508}
-  - component: {fileID: 792137509}
   m_Layer: 0
   m_Name: OPEN SHAPE DETECTOR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &792137506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -506,7 +505,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 792137505}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b02df4a52f31d94193b84c3a1bd2482, type: 3}
   m_Name: 
@@ -536,35 +535,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 792137505}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ee110c84a523cc4eb96b92bd2e5ee71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   DOODLEMASTERCOMPONENT: {fileID: 1150252611}
   _DoodlePointOutputVector2: []
---- !u!114 &792137509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 792137505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 569854eac6088b34f83c083a12483902, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DOODLEMASTERCOMPONENT: {fileID: 1150252611}
-  _DoodlePointOutputVector2: []
-  Patterns:
-  - {fileID: 11400000, guid: ab7fbbcf479709b448d3e63a9e5c1cad, type: 2}
-  - {fileID: 11400000, guid: ff2189fc3e8c59e41b529a0051738108, type: 2}
-  PatternKeyString:
-  - Square
-  - Triange
-  MatchData_r_squared: []
-  Max_R_squared: 0
 --- !u!1 &820606596
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,6 +671,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1150252612}
   - component: {fileID: 1150252611}
+  - component: {fileID: 1150252613}
   m_Layer: 0
   m_Name: DOODLE MASTER OCR
   m_TagString: Untagged
@@ -716,7 +694,7 @@ MonoBehaviour:
   MaxLineLength: 1000
   DoodlerPrefab: {fileID: 2938028090718718157, guid: 95b90c1f67c125b4fab317989cbbb0df, type: 3}
   DrawingOutput: []
-  PatternScriptableObject: {fileID: 11400000, guid: ab7fbbcf479709b448d3e63a9e5c1cad, type: 2}
+  PatternScriptableObject: {fileID: 0}
   _DoodlesList: []
 --- !u!4 &1150252612
 Transform:
@@ -733,6 +711,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1150252613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150252610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dbd74e64c7c1bd4981639ef1a642f5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DOODLEMASTERCOMPONENT: {fileID: 1150252611}
+  _DoodlePointOutputVector2: []
+  Patterns:
+  - {fileID: 11400000, guid: 0ec5b645040767f4590cc3973e8f6da8, type: 2}
+  - {fileID: 11400000, guid: 49e034dda1783e6448de4c431e40f8a5, type: 2}
 --- !u!1 &1727140964
 GameObject:
   m_ObjectHideFlags: 0
