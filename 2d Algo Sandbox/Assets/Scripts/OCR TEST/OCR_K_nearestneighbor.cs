@@ -55,13 +55,11 @@ public class OCR_K_nearestneighbor : MonoBehaviour
                     keypairlist.Add(new KeyValuePair<float, string>(pointdist, currentpatternname));
                 }
             }
-            keypairlist.OrderBy(f => f.Key).ToList();
+            keypairlist = keypairlist.OrderBy(f => f.Key).ToList();
             for (int i = 0; i < k; i++)
             {
                 onepointoutput.Add(keypairlist[i].Value);
-                print("individual value" +keypairlist[i].Value);
             }
-            //print(onepointoutput);
             return onepointoutput;
         }
         //
