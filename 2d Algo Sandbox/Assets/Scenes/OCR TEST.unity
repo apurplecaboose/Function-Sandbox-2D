@@ -650,8 +650,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 852767798}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.61, y: -2.68, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.44, y: -1.77, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -694,7 +694,7 @@ MonoBehaviour:
   MaxLineLength: 1000
   DoodlerPrefab: {fileID: 2938028090718718157, guid: 95b90c1f67c125b4fab317989cbbb0df, type: 3}
   DrawingOutput: []
-  PatternScriptableObject: {fileID: 0}
+  PatternScriptableObject: {fileID: 11400000, guid: 0ec5b645040767f4590cc3973e8f6da8, type: 2}
   _DoodlesList: []
 --- !u!4 &1150252612
 Transform:
@@ -728,6 +728,7 @@ MonoBehaviour:
   Patterns:
   - {fileID: 11400000, guid: 0ec5b645040767f4590cc3973e8f6da8, type: 2}
   - {fileID: 11400000, guid: 49e034dda1783e6448de4c431e40f8a5, type: 2}
+  OUTPUTLIST: []
 --- !u!1 &1727140964
 GameObject:
   m_ObjectHideFlags: 0
@@ -836,8 +837,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1912054380}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.2, y: -1.52, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.44, y: -1.77, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

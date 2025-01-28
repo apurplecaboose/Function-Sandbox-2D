@@ -71,7 +71,7 @@ public class OCR_K_nearestneighbor : MonoBehaviour
         OUTPUTLIST = KNN_list;
         string bestmatchoutput = FindMode(KNN_list);
         int mode = CountOccurrences(KNN_list, bestmatchoutput);
-        float KNNperct = mode / KNN_list.Count;
+        float KNNperct = (float)mode / (float)KNN_list.Count;
         print("Best Match: " + bestmatchoutput + "; Mode: " + mode + "; Total Count: " + KNN_list.Count + "; Percentage: " + KNNperct);
         return bestmatchoutput;
     }
