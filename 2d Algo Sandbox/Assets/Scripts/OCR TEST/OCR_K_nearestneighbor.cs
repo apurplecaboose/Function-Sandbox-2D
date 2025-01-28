@@ -57,6 +57,7 @@ public class OCR_K_nearestneighbor : MonoBehaviour
             List<KeyValuePair<float, string>> keypairlist = new List<KeyValuePair<float, string>>();
             foreach (var keypat in patternlist)
             {
+                //GPT says to speed up I can use miniheap only store values into a miniheap if they are the k number of smallest items then i can avoid the sort function
                 string currentpatternname = keypat.Pattern_Name;
                 foreach (Vector2 p_point in keypat.ReferenceShapeData)
                 {
