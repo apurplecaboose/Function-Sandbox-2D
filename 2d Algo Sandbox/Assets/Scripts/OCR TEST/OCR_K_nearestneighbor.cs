@@ -1,17 +1,22 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class OCR_K_nearestneighbor : MonoBehaviour
 {
+    Stopwatch _benchmark;//FOR TESTING ONLY
     public DoodleMasterOCR DOODLEMASTERCOMPONENT;
 
     public List<Vector2> _DoodlePointOutputVector2;
     public List<PatternStorageObject> Patterns;
     public List<string> OUTPUTLIST;
+    private void Awake()
+    {
+        _benchmark = new Stopwatch();
+    }
     void Update()
     {
         if (Input.GetKeyUp(KeyCode.Mouse0))
@@ -20,7 +25,11 @@ public class OCR_K_nearestneighbor : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
+            _benchmark.Start();
             MatchBestPattern(_DoodlePointOutputVector2, Patterns);
+            _benchmark.Stop();
+            long elapsedMilliseconds = _benchmark.ElapsedMilliseconds;
+            print("time in ms: " + elapsedMilliseconds);
         }
     }
     //if mode % is not high enough reject drawing. Ex: mode is 5(mode)/100(total count). this would be an example of a player drawing garbage needs further testing
