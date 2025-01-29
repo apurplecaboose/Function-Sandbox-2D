@@ -694,7 +694,7 @@ MonoBehaviour:
   MaxLineLength: 1000
   DoodlerPrefab: {fileID: 2938028090718718157, guid: 95b90c1f67c125b4fab317989cbbb0df, type: 3}
   DrawingOutput: []
-  PatternScriptableObject: {fileID: 11400000, guid: 0ec5b645040767f4590cc3973e8f6da8, type: 2}
+  PatternScriptableObject: {fileID: 0}
   _DoodlesList: []
 --- !u!4 &1150252612
 Transform:
@@ -728,6 +728,8 @@ MonoBehaviour:
   Patterns:
   - {fileID: 11400000, guid: 0ec5b645040767f4590cc3973e8f6da8, type: 2}
   - {fileID: 11400000, guid: 49e034dda1783e6448de4c431e40f8a5, type: 2}
+  - {fileID: 11400000, guid: 8b5fd7f4c69b889489283fdbe323e80f, type: 2}
+  - {fileID: 11400000, guid: 7eb6352f94ce5a546845596bc72b33e3, type: 2}
   OUTPUTLIST: []
 --- !u!1 &1727140964
 GameObject:

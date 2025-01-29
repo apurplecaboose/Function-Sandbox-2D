@@ -32,7 +32,15 @@ public class DoodleMasterOCR : MonoBehaviour
                 }
             }
             PatternScriptableObject.ReferenceShapeData = tempoutputlist;
-            //SetFinalColor(Color.red, 1);
+            LetsGetDirty(PatternScriptableObject);
+        }
+        // Saves data written to scriptable objects through code.
+        void LetsGetDirty(UnityEngine.Object scriptableObject)
+        {
+            UnityEditor.EditorUtility.SetDirty(scriptableObject);
+            UnityEditor.AssetDatabase.SaveAssets();
+            UnityEditor.AssetDatabase.Refresh();
+            //print("finished getting dirty");
         }
     }
     void Update()
@@ -77,5 +85,6 @@ public class DoodleMasterOCR : MonoBehaviour
             Destroy(d.gameObject);
         }
         _DoodlesList.Clear();
+        DrawingOutput.Clear();
     }
 }

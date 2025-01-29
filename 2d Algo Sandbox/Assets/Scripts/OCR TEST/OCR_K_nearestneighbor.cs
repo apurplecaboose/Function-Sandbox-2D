@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -13,10 +14,18 @@ public class OCR_K_nearestneighbor : MonoBehaviour
 
     public List<Vector2> _DoodlePointOutputVector2;
     public List<PatternStorageObject> Patterns;
+    List<PatternStorageObject> _OpenPatterns, _ClosedPatterns;
     public List<string> OUTPUTLIST;
-    private void Awake()
+    void Awake ()
     {
         _benchmark = new Stopwatch();
+        _OpenPatterns = new List<PatternStorageObject>();
+        _ClosedPatterns = new List<PatternStorageObject>();
+        foreach (var keypattern in Patterns)
+        {
+            if(keypattern.IsOpenShape) _OpenPatterns.Add(keypattern);
+            else _ClosedPatterns.Add(keypattern);
+        }
     }
     void Update()
     {
@@ -27,10 +36,22 @@ public class OCR_K_nearestneighbor : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C))
         {
             _benchmark.Start();
-            MatchBestPattern(_DoodlePointOutputVector2, Patterns);
+            //testing shape openess
+            float closedthresholdvalue = 0.4f;
+            if (Vector2.Distance(_DoodlePointOutputVector2[0], _DoodlePointOutputVector2[_DoodlePointOutputVector2.Count - 1]) < closedthresholdvalue)
+            {
+                MatchBestPattern(_DoodlePointOutputVector2, _ClosedPatterns);
+                //print("CLOSED Shape");
+            }
+            else
+            {
+                MatchBestPattern(_DoodlePointOutputVector2, _OpenPatterns);
+                //print("OPEN Shape");
+            }
             _benchmark.Stop();
             long elapsedMilliseconds = _benchmark.ElapsedMilliseconds;
             print("time in ms: " + elapsedMilliseconds);
+            _benchmark.Reset();
         }
     }
     //if mode % is not high enough reject drawing. Ex: mode is 5(mode)/100(total count). this would be an example of a player drawing garbage needs further testing
@@ -56,20 +77,35 @@ public class OCR_K_nearestneighbor : MonoBehaviour
         {
             List<string> onepointoutput = new List<string>();
             List<KeyValuePair<float, string>> keypairlist = new List<KeyValuePair<float, string>>();
+            //GPT says to speed up I can use miniheap only store values into a miniheap if they are the k number of smallest items then i can avoid the sort function
+            //or heap into miniheap. When miniheap exceeds certian size remove max values.
+            //EXAMPLE: if (minHeap.Count > k)minHeap.Remove(minHeap.Max);
             foreach (var keypat in patternlist)
             {
-                //GPT says to speed up I can use miniheap only store values into a miniheap if they are the k number of smallest items then i can avoid the sort function
-                //or heap into miniheap. When miniheap exceeds certian size remove max values.
-                //EXAMPLE: if (minHeap.Count > k)minHeap.Remove(minHeap.Max);
-
                 string currentpatternname = keypat.Pattern_Name;
                 foreach (Vector2 p_point in keypat.ReferenceShapeData)
                 {
                     float pointdist = Vector2.Distance(inputPoint, p_point);
+
                     keypairlist.Add(new KeyValuePair<float, string>(pointdist, currentpatternname));
+                    if (keypairlist.Count > k)
+                    {
+                        KeyValuePair<float, string> maxKeyValuePair = keypairlist[0];
+                        float maxFloat = maxKeyValuePair.Key;
+                        // Find the KeyValuePair with the maximum float value in a single pass
+                        for (int i = 1; i < keypairlist.Count; i++)
+                        {
+                            if (keypairlist[i].Key > maxFloat)
+                            {
+                                maxKeyValuePair = keypairlist[i];
+                                maxFloat = keypairlist[i].Key;
+                            }
+                        }
+                        keypairlist.Remove(maxKeyValuePair);
+                    }
                 }
             }
-            keypairlist = keypairlist.OrderBy(f => f.Key).ToList();
+            keypairlist = keypairlist.OrderBy(f => f.Key).ToList(); // not needed anymore if using miniheap... potentially?
             for (int i = 0; i < k; i++)
             {
                 onepointoutput.Add(keypairlist[i].Value);
@@ -80,7 +116,7 @@ public class OCR_K_nearestneighbor : MonoBehaviour
         List<string> KNN_list = new List<string>();
         foreach (Vector2 point in playerdrawingoutput)
         {
-            KNN_list.AddRange(Find_K_NearestNeighbor_OnePoint(point, 5));
+            KNN_list.AddRange(Find_K_NearestNeighbor_OnePoint(point, 10));
         }
         OUTPUTLIST = KNN_list;
         string bestmatchoutput = FindMode(KNN_list);
