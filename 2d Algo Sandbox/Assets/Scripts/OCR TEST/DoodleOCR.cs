@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using System.Security.Cryptography;
 
 [RequireComponent(typeof(LineRenderer))]
 public class DoodleOCR : MonoBehaviour
@@ -92,9 +91,13 @@ public class DoodleOCR : MonoBehaviour
         gradient.SetKeys(colorKeys, alphaKeys);
         return gradient;
     }
+    public float CalculateOpenDistance()
+    {
+        return Vector2.Distance(_PointsListRaw[0], _PointsListRaw[_PointsListRaw.Count - 1]);
+    }
     public List<Vector3> PrintPointOutput(int doodleNumber)
     {
-        ///center shape and rescale
+        //find open distance        ///center shape and rescale
         _LineLength = _PointsListRaw.Count - 1 * _MinPointDistance;//find line length;
         //find center
         float min_X = _PointsListRaw.Min((v => v.x));

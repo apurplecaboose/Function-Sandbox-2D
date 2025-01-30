@@ -33,24 +33,28 @@ public class OCR_K_nearestneighbor : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
-            _benchmark.Start();
-            //testing shape openess
-            float closedthresholdvalue = 1f;
-            if (Vector2.Distance(_DoodlePointOutputVector2[0], _DoodlePointOutputVector2[_DoodlePointOutputVector2.Count - 1]) < closedthresholdvalue)
-            {
-                MatchBestPattern(_DoodlePointOutputVector2, _ClosedPatterns);
-                //print("CLOSED Shape");
-            }
-            else
-            {
-                MatchBestPattern(_DoodlePointOutputVector2, _OpenPatterns);
-                //print("OPEN Shape");
-            }
-            _benchmark.Stop();
-            long elapsedMilliseconds = _benchmark.ElapsedMilliseconds;
-            print("time in ms: " + elapsedMilliseconds);
-            _benchmark.Reset();
+            StartMatchingProcedure();
         }
+    }
+    void StartMatchingProcedure()
+    {
+        _benchmark.Start();
+        //testing shape openess
+        float closedthresholdvalue = 0.5f;
+        if (DOODLEMASTERCOMPONENT.CurrentDoodleOpenDistance < closedthresholdvalue)
+        {
+            MatchBestPattern(_DoodlePointOutputVector2, _ClosedPatterns);
+            //print("CLOSED Shape");
+        }
+        else
+        {
+            MatchBestPattern(_DoodlePointOutputVector2, _OpenPatterns);
+            //print("OPEN Shape");
+        }
+        _benchmark.Stop();
+        long elapsedMilliseconds = _benchmark.ElapsedMilliseconds;
+        print("time in ms: " + elapsedMilliseconds);
+        _benchmark.Reset();
     }
     //if mode % is not high enough reject drawing. Ex: mode is 5(mode)/100(total count). this would be an example of a player drawing garbage needs further testing
     
@@ -114,7 +118,7 @@ public class OCR_K_nearestneighbor : MonoBehaviour
         List<string> KNN_list = new List<string>();
         foreach (Vector2 point in playerdrawingoutput)
         {
-            KNN_list.AddRange(Find_K_NearestNeighbor_OnePoint(point, 5));
+            KNN_list.AddRange(Find_K_NearestNeighbor_OnePoint(point, 3));
         }
         OUTPUTLIST = KNN_list;
         string bestmatchoutput = FindMode(KNN_list);

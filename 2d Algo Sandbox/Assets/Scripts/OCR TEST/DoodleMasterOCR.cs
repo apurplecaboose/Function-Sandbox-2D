@@ -9,6 +9,7 @@ using UnityEditor;
 public class DoodleMasterOCR : MonoBehaviour
 {
     public float MaxLineLength = 1500;
+    public float CurrentDoodleOpenDistance;
     public DoodleOCR DoodlerPrefab;
     DoodleOCR _currentDoodler;
     int _DoodleSortOrder = 50;
@@ -24,7 +25,6 @@ public class DoodleMasterOCR : MonoBehaviour
         EditorUtility.SetDirty(scriptableObject);
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
-        //print("finished getting dirty");
     }
 #endif
     void TEMPFUNCTIONS()
@@ -72,6 +72,7 @@ public class DoodleMasterOCR : MonoBehaviour
     }
     void EndDoodlin()
     {
+        CurrentDoodleOpenDistance = _currentDoodler.CalculateOpenDistance();
         DrawingOutput.AddRange(_currentDoodler.PrintPointOutput(0));
         _currentDoodler.SetLineColor(Color.cyan); //optional color change
         _currentDoodler = null;

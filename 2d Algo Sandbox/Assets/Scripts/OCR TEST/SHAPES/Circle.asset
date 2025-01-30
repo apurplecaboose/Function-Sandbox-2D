@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a3d77d9ba3c60a409ec2035beec82e6, type: 3}
   m_Name: Circle
   m_EditorClassIdentifier: 
-  IsOpenShape: 1
+  IsOpenShape: 0
   Pattern_Name: Circle
   ReferenceShapeData:
   - {x: -3040.3088, y: 747.6009}
