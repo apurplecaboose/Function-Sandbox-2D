@@ -3,9 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 public class DoodleMasterOCR : MonoBehaviour
 {
-    public float MaxLineLength = 750;
+    public float MaxLineLength = 1500;
     public DoodleOCR DoodlerPrefab;
     DoodleOCR _currentDoodler;
     int _DoodleSortOrder = 50;
@@ -14,6 +17,16 @@ public class DoodleMasterOCR : MonoBehaviour
     public PatternStorageObject PatternScriptableObject;
 
     [SerializeField] List<DoodleOCR> _DoodlesList;
+#if UNITY_EDITOR
+    // Saves data written to scriptable objects through code.
+    void LetsGetDirty(UnityEngine.Object scriptableObject)
+    {
+        EditorUtility.SetDirty(scriptableObject);
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+        //print("finished getting dirty");
+    }
+#endif
     void TEMPFUNCTIONS()
     {
         if (Input.GetKeyDown(KeyCode.Backspace))
@@ -32,15 +45,9 @@ public class DoodleMasterOCR : MonoBehaviour
                 }
             }
             PatternScriptableObject.ReferenceShapeData = tempoutputlist;
+#if UNITY_EDITOR
             LetsGetDirty(PatternScriptableObject);
-        }
-        // Saves data written to scriptable objects through code.
-        void LetsGetDirty(UnityEngine.Object scriptableObject)
-        {
-            UnityEditor.EditorUtility.SetDirty(scriptableObject);
-            UnityEditor.AssetDatabase.SaveAssets();
-            UnityEditor.AssetDatabase.Refresh();
-            //print("finished getting dirty");
+#endif
         }
     }
     void Update()

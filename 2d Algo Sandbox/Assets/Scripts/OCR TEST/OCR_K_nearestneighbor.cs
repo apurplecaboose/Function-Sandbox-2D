@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class OCR_K_nearestneighbor : MonoBehaviour
@@ -37,7 +35,7 @@ public class OCR_K_nearestneighbor : MonoBehaviour
         {
             _benchmark.Start();
             //testing shape openess
-            float closedthresholdvalue = 0.4f;
+            float closedthresholdvalue = 1f;
             if (Vector2.Distance(_DoodlePointOutputVector2[0], _DoodlePointOutputVector2[_DoodlePointOutputVector2.Count - 1]) < closedthresholdvalue)
             {
                 MatchBestPattern(_DoodlePointOutputVector2, _ClosedPatterns);
@@ -116,7 +114,7 @@ public class OCR_K_nearestneighbor : MonoBehaviour
         List<string> KNN_list = new List<string>();
         foreach (Vector2 point in playerdrawingoutput)
         {
-            KNN_list.AddRange(Find_K_NearestNeighbor_OnePoint(point, 10));
+            KNN_list.AddRange(Find_K_NearestNeighbor_OnePoint(point, 5));
         }
         OUTPUTLIST = KNN_list;
         string bestmatchoutput = FindMode(KNN_list);
