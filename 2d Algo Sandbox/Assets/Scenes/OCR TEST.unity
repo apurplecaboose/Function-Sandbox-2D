@@ -324,6 +324,7 @@ GameObject:
   - component: {fileID: 729746906}
   - component: {fileID: 729746909}
   - component: {fileID: 729746908}
+  - component: {fileID: 729746910}
   m_Layer: 0
   m_Name: DEBUG
   m_TagString: Untagged
@@ -388,6 +389,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onswitch: 1
   data: {fileID: 11400000, guid: 3634cc28d80c0864ebe9a809e6d8e4de, type: 2}
+--- !u!114 &729746910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729746905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 608ba4041abdd5d4db8003f46ffcf24e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onswitch: 1
+  data: {fileID: 11400000, guid: 5264624cb1027af4388d0d857044e70f, type: 2}
 --- !u!1 &792137505
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,7 +663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3965e34a12f240b43be3b9ffc72cf430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DEV_PATTERN_CREATION_MODE: 1
+  DEV_PATTERN_CREATION_MODE: 0
   DEV_PatternScriptableObject: {fileID: 11400000, guid: 0cb29f3ae1edb604aab06080659d68d1, type: 2}
   _interpointdistance: 0.05
   DoodlerPrefab: {fileID: 2938028090718718157, guid: 95b90c1f67c125b4fab317989cbbb0df, type: 3}
@@ -682,6 +697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dbd74e64c7c1bd4981639ef1a642f5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TESTINGDEBUGDISTANCES: []
   DOODLEMASTERCOMPONENT: {fileID: 1150252611}
   _DoodlePointOutputVector2: []
   Patterns:

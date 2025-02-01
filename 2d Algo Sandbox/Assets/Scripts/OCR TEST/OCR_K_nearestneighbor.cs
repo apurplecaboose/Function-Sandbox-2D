@@ -7,6 +7,9 @@ using UnityEngine;
 
 public class OCR_K_nearestneighbor : MonoBehaviour
 {
+    public List<float> TESTINGDEBUGDISTANCES = new List<float>();
+
+
     Stopwatch _benchmark;//FOR TESTING ONLY
     public DoodleMasterOCR DOODLEMASTERCOMPONENT;
 
@@ -110,7 +113,13 @@ public class OCR_K_nearestneighbor : MonoBehaviour
             keypairlist = keypairlist.OrderBy(f => f.Key).ToList(); // not needed anymore if using miniheap... potentially?
             for (int i = 0; i < k; i++)
             {
-                onepointoutput.Add(keypairlist[i].Value);
+                TESTINGDEBUGDISTANCES.Add(keypairlist[i].Key); // prob change later
+                float tooooo_abstract_Threshold = 3000;
+                if (keypairlist[i].Key > tooooo_abstract_Threshold)
+                {
+                    onepointoutput.Add("NULL_PATTERN");
+                }
+                else onepointoutput.Add(keypairlist[i].Value);
             }
             return onepointoutput;
         }
@@ -124,7 +133,9 @@ public class OCR_K_nearestneighbor : MonoBehaviour
         string bestmatchoutput = FindMode(KNN_list);
         int mode = CountOccurrences(KNN_list, bestmatchoutput);
         float KNNperct = (float)mode / (float)KNN_list.Count;
-        print("Best Match: " + bestmatchoutput + "; Mode: " + mode + "; Total Count: " + KNN_list.Count + "; Percentage: " + KNNperct);
+        float averagedistanceerror = 0;
+        if(TESTINGDEBUGDISTANCES.Count > 0 ) averagedistanceerror = TESTINGDEBUGDISTANCES.Average();
+        print("Best Match: " + bestmatchoutput + "; Mode: " + mode + "; Total Count: " + KNN_list.Count + "; Percentage: " + KNNperct + "averagepointdistance:" + averagedistanceerror);
         return bestmatchoutput;
     }
 
