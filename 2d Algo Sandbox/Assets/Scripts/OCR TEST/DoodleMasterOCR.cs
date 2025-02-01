@@ -37,6 +37,7 @@ public class DoodleMasterOCR : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             _currentDoodler = Instantiate(DoodlerPrefab, this.transform); // instantiate as a child of the doodle master.
+            _currentDoodler.parentDoodler = this;
             if(DEV_PATTERN_CREATION_MODE)
             {
                 _currentDoodler.DEV_PatternCreationDoodleMode(_interpointdistance, 1000000);

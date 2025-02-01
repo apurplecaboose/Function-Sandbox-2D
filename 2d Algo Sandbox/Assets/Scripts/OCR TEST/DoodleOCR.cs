@@ -12,7 +12,7 @@ public class DoodleOCR : MonoBehaviour
     List<Vector2> _PointsListRaw;
 
     float _MinPointDistance = 0.2f, // do not go below 0.2f
-          _MaxLineLength = 750, _LineLength,
+          _MaxLineLength = 75, _LineLength,
           _TargetScalingFactor = 100000;
 
     Vector3 NewCenterPoint;
@@ -34,7 +34,7 @@ public class DoodleOCR : MonoBehaviour
     }
     void Update()
     {
-        //IsLineTooLong();
+        IsLineTooLong();
     }
     public void UpdateLine(Vector2 inputmouseposition)
     {
@@ -80,10 +80,12 @@ public class DoodleOCR : MonoBehaviour
     }
     void IsLineTooLong()
     {
-        _LineLength = _PointsListRaw.Count - 1 * _MinPointDistance;
+        if (_LineLength < 0) return;
+        _LineLength = (_PointsListRaw.Count - 1) * _MinPointDistance;
         if (_LineLength >= _MaxLineLength)
         {
             parentDoodler.EndDoodlin();
+            _LineLength = -_LineLength;
             Debug.Log("Watch it! Line is too Loooooong it was cut short");
         }
     }
@@ -94,7 +96,8 @@ public class DoodleOCR : MonoBehaviour
     public List<Vector3> PrintPointOutput(int doodleNumber)
     {
         ///center shape and rescale
-        _LineLength = (_PointsListRaw.Count - 1) * _MinPointDistance;//find line length;
+        if(_LineLength > 0) _LineLength = (_PointsListRaw.Count - 1) * _MinPointDistance;//find line length;
+
         //find center
         float min_X = _PointsListRaw.Min((v => v.x));
         float max_X = _PointsListRaw.Max((v => v.x));
@@ -103,7 +106,7 @@ public class DoodleOCR : MonoBehaviour
         float xcenter = (max_X + min_X) / 2;
         float ycenter = (max_Y + min_Y) / 2;
         Vector2 AABB_center = new Vector2(xcenter, ycenter);
-        float scalingfactor = _TargetScalingFactor / _LineLength;//scale according to line length
+        float scalingfactor = _TargetScalingFactor / Mathf.Abs(_LineLength);//scale according to line length
         for (int i = 0; i < _PointsListRaw.Count; i++)
         {
             _PointsListRaw[i] = _PointsListRaw[i] - AABB_center;
