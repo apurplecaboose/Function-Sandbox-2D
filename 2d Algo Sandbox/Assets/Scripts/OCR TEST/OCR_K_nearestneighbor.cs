@@ -46,12 +46,12 @@ public class OCR_K_nearestneighbor : MonoBehaviour
         float closedthresholdvalue = 0.5f;
         if (DOODLEMASTERCOMPONENT.CurrentDoodleOpenDistance < closedthresholdvalue)
         {
-            MatchBestPattern(_DoodlePointOutputVector2, _ClosedPatterns);
+            MatchBestPattern(_DoodlePointOutputVector2, _ClosedPatterns, false);
             //print("CLOSED Shape");
         }
         else
         {
-            MatchBestPattern(_DoodlePointOutputVector2, _OpenPatterns);
+            MatchBestPattern(_DoodlePointOutputVector2, _OpenPatterns, true);
             //print("OPEN Shape");
         }
         _benchmark.Stop();
@@ -61,7 +61,7 @@ public class OCR_K_nearestneighbor : MonoBehaviour
     }
     //if mode % is not high enough reject drawing. Ex: mode is 5(mode)/100(total count). this would be an example of a player drawing garbage needs further testing
     
-    public string MatchBestPattern(List<Vector2> playerdrawingoutput, List<PatternStorageObject> patternlist)
+    public string MatchBestPattern(List<Vector2> playerdrawingoutput, List<PatternStorageObject> patternlist, bool isopen)
     {
         string FindMode(List<string> outputnames)
         {
@@ -88,7 +88,7 @@ public class OCR_K_nearestneighbor : MonoBehaviour
             foreach (var keypat in patternlist)
             {
                 string currentpatternname = keypat.Pattern_Name;
-                //potentiall check keypattern rigor requirment here?
+                //potentiall check keypat rigor requirment here?
                 foreach (Vector2 p_point in keypat.ReferenceShapeData)
                 {
                     float pointdist = Vector2.Distance(inputPoint, p_point);
@@ -115,7 +115,9 @@ public class OCR_K_nearestneighbor : MonoBehaviour
             for (int i = 0; i < k; i++)
             {
                 TESTINGDEBUGDISTANCES.Add(keypairlist[i].Key); // prob change later
-                float tooooo_abstract_Threshold = 3500;
+                float tooooo_abstract_Threshold = 0;
+                if (isopen) tooooo_abstract_Threshold = 1800; // maybe lerp this value from 0-100 to have a strictness attribute
+                else tooooo_abstract_Threshold = 3500;
                 if (keypairlist[i].Key > tooooo_abstract_Threshold)
                 {
                     onepointoutput.Add("NULL_PATTERN");
