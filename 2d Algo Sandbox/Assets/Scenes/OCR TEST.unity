@@ -244,7 +244,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &680277515
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -312,6 +312,82 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &729746905
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 729746907}
+  - component: {fileID: 729746906}
+  - component: {fileID: 729746909}
+  - component: {fileID: 729746908}
+  m_Layer: 0
+  m_Name: DEBUG
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &729746906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729746905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 608ba4041abdd5d4db8003f46ffcf24e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onswitch: 1
+  data: {fileID: 11400000, guid: 121a8d13b903a9542ad6c98d3685eed2, type: 2}
+--- !u!4 &729746907
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729746905}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &729746908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729746905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 608ba4041abdd5d4db8003f46ffcf24e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onswitch: 1
+  data: {fileID: 11400000, guid: 2ca092a0da4f2434fb4e99411783e947, type: 2}
+--- !u!114 &729746909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729746905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 608ba4041abdd5d4db8003f46ffcf24e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onswitch: 1
+  data: {fileID: 11400000, guid: 3634cc28d80c0864ebe9a809e6d8e4de, type: 2}
 --- !u!1 &792137505
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,7 +466,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &904892769
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -474,7 +550,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &993059658
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -572,10 +648,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3965e34a12f240b43be3b9ffc72cf430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DEV_PATTERN_CREATION_MODE: 1
+  DEV_PatternScriptableObject: {fileID: 11400000, guid: 0cb29f3ae1edb604aab06080659d68d1, type: 2}
+  _interpointdistance: 0.05
   DoodlerPrefab: {fileID: 2938028090718718157, guid: 95b90c1f67c125b4fab317989cbbb0df, type: 3}
   _DoodlesList: []
-  DEV_PATTERN_CREATION_MODE: 0
-  DEV_PatternScriptableObject: {fileID: 0}
   CurrentDoodleOpenDistance: 0
   DrawingOutput: []
 --- !u!4 &1150252612
@@ -587,7 +664,7 @@ Transform:
   m_GameObject: {fileID: 1150252610}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.190141, y: 2.0495071, z: 0.029419703}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -608,12 +685,12 @@ MonoBehaviour:
   DOODLEMASTERCOMPONENT: {fileID: 1150252611}
   _DoodlePointOutputVector2: []
   Patterns:
-  - {fileID: 11400000, guid: 24351c9d900884a4db63426518ee7369, type: 2}
-  - {fileID: 11400000, guid: 957f7ea7f81acfe429c5b28d7deae211, type: 2}
-  - {fileID: 11400000, guid: b25da1ba9f7950f4a91e81aab98b71eb, type: 2}
-  - {fileID: 11400000, guid: 2652d1d47eccdf846aa847f484dbf164, type: 2}
+  - {fileID: 11400000, guid: 121a8d13b903a9542ad6c98d3685eed2, type: 2}
+  - {fileID: 11400000, guid: 5264624cb1027af4388d0d857044e70f, type: 2}
   - {fileID: 11400000, guid: 3634cc28d80c0864ebe9a809e6d8e4de, type: 2}
-  - {fileID: 11400000, guid: 49e034dda1783e6448de4c431e40f8a5, type: 2}
+  - {fileID: 11400000, guid: 2ca092a0da4f2434fb4e99411783e947, type: 2}
+  - {fileID: 11400000, guid: a5fa7c36863f4cf4ab46202c877337df, type: 2}
+  - {fileID: 11400000, guid: 0cb29f3ae1edb604aab06080659d68d1, type: 2}
   OUTPUTLIST: []
 --- !u!1 &1482160322
 GameObject:
@@ -631,7 +708,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1482160323
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -795,3 +872,4 @@ SceneRoots:
   - {fileID: 680277516}
   - {fileID: 904892770}
   - {fileID: 993059659}
+  - {fileID: 729746907}

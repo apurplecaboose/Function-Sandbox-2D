@@ -11,7 +11,7 @@ public class DebugREE : MonoBehaviour
         {
             foreach (Vector2 vec2point in data.ReferenceShapeData)
             {
-                Gizmos.DrawSphere(new Vector3(vec2point.x, vec2point.y, 0), 25f);
+                Gizmos.DrawSphere(new Vector3(vec2point.x, vec2point.y, 0), 200f);
             }
         }       
     }
