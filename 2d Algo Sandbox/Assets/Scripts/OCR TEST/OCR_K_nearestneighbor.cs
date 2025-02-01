@@ -128,7 +128,7 @@ public class OCR_K_nearestneighbor : MonoBehaviour
         List<string> KNN_list = new List<string>();
         foreach (Vector2 point in playerdrawingoutput)
         {
-            KNN_list.AddRange(Find_K_NearestNeighbor_OnePoint(point, 5));
+            KNN_list.AddRange(Find_K_NearestNeighbor_OnePoint(point, 3));
         }
         OUTPUTLIST = KNN_list;
         string bestmatchoutput = FindMode(KNN_list);
