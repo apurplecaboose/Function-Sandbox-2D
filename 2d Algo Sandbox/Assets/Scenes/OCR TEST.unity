@@ -331,7 +331,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &729746906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -664,7 +664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DEV_PATTERN_CREATION_MODE: 0
-  DEV_PatternScriptableObject: {fileID: 11400000, guid: 0cb29f3ae1edb604aab06080659d68d1, type: 2}
+  DEV_PatternScriptableObject: {fileID: 0}
   _interpointdistance: 0.05
   DoodlerPrefab: {fileID: 2938028090718718157, guid: 95b90c1f67c125b4fab317989cbbb0df, type: 3}
   _DoodlesList: []
@@ -707,6 +707,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2ca092a0da4f2434fb4e99411783e947, type: 2}
   - {fileID: 11400000, guid: a5fa7c36863f4cf4ab46202c877337df, type: 2}
   - {fileID: 11400000, guid: 0cb29f3ae1edb604aab06080659d68d1, type: 2}
+  - {fileID: 11400000, guid: 4f3f659a51ffe0646b4f6e53a76a1957, type: 2}
   OUTPUTLIST: []
 --- !u!1 &1482160322
 GameObject:
