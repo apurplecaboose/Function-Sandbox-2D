@@ -6,11 +6,15 @@ using System.Linq;
 [RequireComponent(typeof(LineRenderer))]
 public class DoodleOCR : MonoBehaviour
 {
+    public DoodleMasterOCR parentDoodler;
+
     LineRenderer _LineRend;
     List<Vector2> _PointsListRaw;
-    float _MinPointDistance = 0.2f; // do not go below 0.2f
-    float _LineLength;
-    float _TargetScalingFactor = 100000;
+
+    float _MinPointDistance = 0.3f, // do not go below 0.2f
+          _MaxLineLength = 750, _LineLength,
+          _TargetScalingFactor = 100000;
+
     Vector3 NewCenterPoint;
     void OnDrawGizmos()
     {
@@ -22,6 +26,15 @@ public class DoodleOCR : MonoBehaviour
     void Awake()
     {
         _LineRend = this.GetComponent<LineRenderer>();
+    }
+    public void DEV_PatternCreationDoodleMode(float interpointdistance, float maxlinelength)
+    {
+        _MinPointDistance =interpointdistance;
+        _MaxLineLength = maxlinelength;
+    }
+    void Update()
+    {
+        IsLineTooLong();
     }
     public void UpdateLine(Vector2 inputmouseposition)
     {
@@ -58,38 +71,21 @@ public class DoodleOCR : MonoBehaviour
             return;
         }
         else return;// this case should NEVER happen :)
-    }
-    public bool IsLineTooLong(float maxallowablelength)
-    {
-        _LineLength = _PointsListRaw.Count - 1 * _MinPointDistance;
-        if (_LineLength >= maxallowablelength)
-        {
-            Debug.Log("Watch it! Line is too Loooooong it was cut short");
-            return true;
-        }
-        else return false;
-    }
+    } 
     void SetPoint(Vector2 point)
     {
         _PointsListRaw.Add(point);
         _LineRend.positionCount = _PointsListRaw.Count;
         _LineRend.SetPosition(_PointsListRaw.Count - 1, point);
     }
-    public void SetLineColor(Color targetColor)
+    void IsLineTooLong()
     {
-        _LineRend.colorGradient = SingleColorToGradient(targetColor);
-    }
-    Gradient SingleColorToGradient(Color color)
-    {
-        Gradient gradient = new Gradient();
-        GradientColorKey[] colorKeys = new GradientColorKey[2];
-        colorKeys[0] = new GradientColorKey(color, 0.0f);
-        colorKeys[1] = new GradientColorKey(color, 1.0f);
-        GradientAlphaKey[] alphaKeys = new GradientAlphaKey[2];
-        alphaKeys[0] = new GradientAlphaKey(color.a, 0.0f);
-        alphaKeys[1] = new GradientAlphaKey(color.a, 1.0f);
-        gradient.SetKeys(colorKeys, alphaKeys);
-        return gradient;
+        _LineLength = _PointsListRaw.Count - 1 * _MinPointDistance;
+        if (_LineLength >= _MaxLineLength)
+        {
+            parentDoodler.EndDoodlin();
+            Debug.Log("Watch it! Line is too Loooooong it was cut short");
+        }
     }
     public float CalculateOpenDistance()
     {
@@ -125,4 +121,21 @@ public class DoodleOCR : MonoBehaviour
         return returnList;  
     }
 
+    //for visuals
+    public void SetLineColor(Color targetColor)
+    {
+        _LineRend.colorGradient = SingleColorToGradient(targetColor);
+    }
+    Gradient SingleColorToGradient(Color color)
+    {
+        Gradient gradient = new Gradient();
+        GradientColorKey[] colorKeys = new GradientColorKey[2];
+        colorKeys[0] = new GradientColorKey(color, 0.0f);
+        colorKeys[1] = new GradientColorKey(color, 1.0f);
+        GradientAlphaKey[] alphaKeys = new GradientAlphaKey[2];
+        alphaKeys[0] = new GradientAlphaKey(color.a, 0.0f);
+        alphaKeys[1] = new GradientAlphaKey(color.a, 1.0f);
+        gradient.SetKeys(colorKeys, alphaKeys);
+        return gradient;
+    }
 }

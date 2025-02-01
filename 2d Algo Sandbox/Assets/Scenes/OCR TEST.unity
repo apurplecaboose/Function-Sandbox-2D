@@ -123,52 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &121796919
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 121796921}
-  - component: {fileID: 121796920}
-  m_Layer: 0
-  m_Name: DebugCircle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &121796920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 121796919}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 608ba4041abdd5d4db8003f46ffcf24e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onswitch: 1
-  data: {fileID: 11400000, guid: 24351c9d900884a4db63426518ee7369, type: 2}
---- !u!4 &121796921
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 121796919}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &403629056
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,52 +228,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e398678fe5498e4cb88f2974453b4d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &436572659
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 436572661}
-  - component: {fileID: 436572660}
-  m_Layer: 0
-  m_Name: Debugfish
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &436572660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 436572659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 608ba4041abdd5d4db8003f46ffcf24e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onswitch: 1
-  data: {fileID: 11400000, guid: a42dc9a0f6512be4e81107b0f7034ec1, type: 2}
---- !u!4 &436572661
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 436572659}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &680277514
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,52 +374,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DOODLEMASTERCOMPONENT: {fileID: 1150252611}
   _DoodlePointOutputVector2: []
---- !u!1 &807315080
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 807315083}
-  - component: {fileID: 807315081}
-  m_Layer: 0
-  m_Name: DebugArrow
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &807315081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 807315080}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 608ba4041abdd5d4db8003f46ffcf24e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onswitch: 1
-  data: {fileID: 11400000, guid: bb72d2bb8e40fe24fa8a719bf1d1ecfb, type: 2}
---- !u!4 &807315083
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 807315080}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &904892768
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,52 +458,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &980543787
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 980543789}
-  - component: {fileID: 980543788}
-  m_Layer: 0
-  m_Name: DebugTriangle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &980543788
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 980543787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 608ba4041abdd5d4db8003f46ffcf24e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onswitch: 1
-  data: {fileID: 11400000, guid: 49e034dda1783e6448de4c431e40f8a5, type: 2}
---- !u!4 &980543789
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 980543787}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &993059657
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,7 +474,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &993059658
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -756,12 +572,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3965e34a12f240b43be3b9ffc72cf430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxLineLength: 1000
-  CurrentDoodleOpenDistance: 0
   DoodlerPrefab: {fileID: 2938028090718718157, guid: 95b90c1f67c125b4fab317989cbbb0df, type: 3}
-  DrawingOutput: []
-  PatternScriptableObject: {fileID: 0}
   _DoodlesList: []
+  DEV_PATTERN_CREATION_MODE: 0
+  DEV_PatternScriptableObject: {fileID: 0}
+  CurrentDoodleOpenDistance: 0
+  DrawingOutput: []
 --- !u!4 &1150252612
 Transform:
   m_ObjectHideFlags: 0
@@ -792,10 +608,12 @@ MonoBehaviour:
   DOODLEMASTERCOMPONENT: {fileID: 1150252611}
   _DoodlePointOutputVector2: []
   Patterns:
-  - {fileID: 11400000, guid: 49e034dda1783e6448de4c431e40f8a5, type: 2}
-  - {fileID: 11400000, guid: a42dc9a0f6512be4e81107b0f7034ec1, type: 2}
-  - {fileID: 11400000, guid: bb72d2bb8e40fe24fa8a719bf1d1ecfb, type: 2}
   - {fileID: 11400000, guid: 24351c9d900884a4db63426518ee7369, type: 2}
+  - {fileID: 11400000, guid: 957f7ea7f81acfe429c5b28d7deae211, type: 2}
+  - {fileID: 11400000, guid: b25da1ba9f7950f4a91e81aab98b71eb, type: 2}
+  - {fileID: 11400000, guid: 2652d1d47eccdf846aa847f484dbf164, type: 2}
+  - {fileID: 11400000, guid: 3634cc28d80c0864ebe9a809e6d8e4de, type: 2}
+  - {fileID: 11400000, guid: 49e034dda1783e6448de4c431e40f8a5, type: 2}
   OUTPUTLIST: []
 --- !u!1 &1482160322
 GameObject:
@@ -897,7 +715,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1682006571
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -977,7 +795,3 @@ SceneRoots:
   - {fileID: 680277516}
   - {fileID: 904892770}
   - {fileID: 993059659}
-  - {fileID: 807315083}
-  - {fileID: 980543789}
-  - {fileID: 121796921}
-  - {fileID: 436572661}
