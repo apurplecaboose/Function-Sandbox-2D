@@ -7,12 +7,16 @@ using UnityEditor;
 #endif
 public class DoodleMasterOCR : MonoBehaviour
 {
+    [Header("DEV SETTINGS")]
+    public bool DEV_PATTERN_CREATION_MODE;
+    public PatternStorageObject DEV_PatternScriptableObject;
+    [SerializeField] float _interpointdistance = 0.05f;
+
+    [Header ("Attributes")]
     public DoodleOCR DoodlerPrefab;
     DoodleOCR _currentDoodler;
     [SerializeField] List<DoodleOCR> _DoodlesList; // currently serialized for visibility
 
-    public bool DEV_PATTERN_CREATION_MODE;
-    public PatternStorageObject DEV_PatternScriptableObject;
 
     [HideInInspector]public float CurrentDoodleOpenDistance; //currently being called by OCR K_nearestneighbor could be made private if to combine the two scripts
 
@@ -33,7 +37,7 @@ public class DoodleMasterOCR : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             _currentDoodler = Instantiate(DoodlerPrefab, this.transform); // instantiate as a child of the doodle master.
-            _currentDoodler.DEV_PatternCreationDoodleMode(0.05f, 1000000);
+            _currentDoodler.DEV_PatternCreationDoodleMode(_interpointdistance, 1000000);
             _DoodlesList.Add(_currentDoodler); // adds all doodles to a list for easy clearing
         }
         if (Input.GetKeyUp(KeyCode.Mouse0))
