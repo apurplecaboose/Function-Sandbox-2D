@@ -9,7 +9,7 @@ public class DoodleMasterOCR : MonoBehaviour
 {
     [Header("DEV SETTINGS")]
     public bool DEV_PATTERN_CREATION_MODE;
-    public PatternStorageObject DEV_PatternScriptableObject;
+    public PatternStorageObject DEV_PatternScriptableObject; public RawTrainingData RawTrainingData;
     [SerializeField] float _interpointdistance = 0.05f;
 
     [Header ("Attributes")]
@@ -97,9 +97,22 @@ public class DoodleMasterOCR : MonoBehaviour
                 tempoutputlist.Add(new Vector2(datapoint.x, datapoint.y));
             }
         }
-        DEV_PatternScriptableObject.ReferenceShapeData = tempoutputlist;
+
+        if(RawTrainingData == null && DEV_PatternScriptableObject == null)
+        {
+            return;
+        }
 #if UNITY_EDITOR
-        LetsGetDirty(DEV_PatternScriptableObject);
+        else if (DEV_PatternScriptableObject != null)
+        {
+            DEV_PatternScriptableObject.ReferenceShapeData = tempoutputlist;
+            LetsGetDirty(DEV_PatternScriptableObject);
+        }
+        else if(RawTrainingData != null)
+        {
+            RawTrainingData.Rawvec2data = tempoutputlist;
+            LetsGetDirty(RawTrainingData);
+        }
         // Saves data written to scriptable objects through code.
         void LetsGetDirty(UnityEngine.Object scriptableObject)
         {
