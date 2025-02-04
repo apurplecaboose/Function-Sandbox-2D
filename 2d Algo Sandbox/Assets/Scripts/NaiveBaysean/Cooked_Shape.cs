@@ -20,7 +20,10 @@ public class Cooked_Shape : ScriptableObject
     [Header("Mean")]
     public float mean_top;
     public float mean_bottom, mean_left, mean_right, mean_middle;
+    public List<float> meanPoints;
     [Header("STD")]
     public float std_top;
     public float std_bottom, std_left, std_right, std_middle;
+    public List<float> STD_Points;
+
 }
