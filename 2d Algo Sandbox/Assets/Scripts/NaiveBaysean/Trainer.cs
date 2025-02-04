@@ -7,27 +7,18 @@ using UnityEngine;
 public class Trainer : MonoBehaviour
 {
     [SerializeField] float _Keypointscale = 75000;
-    int _gridsize = 9;
+    [SerializeField] int _gridsize = 11;
     public Cooked_Shape TrainingTarget;
     public List<RawTrainingData> TrainingData;
 
     Stopwatch _benchmark;//FOR TESTING ONLY
     List<Vector2> _KeyPoints; //top left to bottom right; left to right; top to bottom; 
-    private List<float> _rawSigma_top, _rawSigma_bottom, _rawSigma_left, _rawSigma_right, _rawSigma_center;
+
     List<List<float>> _rawsigmaNested;
     void Awake()
     {
         _rawsigmaNested = new List<List<float>>();
-        _rawSigma_bottom = new List<float>();
-        _rawSigma_center = new List<float>();
-        _rawSigma_left = new List<float>();
-        _rawSigma_right = new List<float>();
-        _rawSigma_top = new List<float>();
-        //_KeyPoints = new List<Vector2> { new Vector2 (-1,1), new Vector2 (0,1), new Vector2 (1,1),
-        //                                new Vector2 (-1,0), new Vector2 (0,0), new Vector2 (1,0),
-        //                                new Vector2 (-1,1), new Vector2 (-1,0), new Vector2 (-1,1)};
-        //// scale keypoints to new arbitrary scale
-        ///
+
         _KeyPoints = GenerateGridPoints(_gridsize);
         for (int i = 0; i < _KeyPoints.Count; i++)
         {
@@ -67,42 +58,6 @@ public class Trainer : MonoBehaviour
             List<float> rawsigmas = new List<float>();
             rawsigmas.AddRange(RawOnePoint_MeanSquareDistance(_KeyPoints[i]));
             _rawsigmaNested.Add(rawsigmas);
-
-
-            //switch (i)
-            //{
-            //    case 0:
-            //        _rawSigma_top.AddRange(rawsigmas);
-            //        _rawSigma_left.AddRange(rawsigmas);
-            //        break;
-            //    case 1:
-            //        _rawSigma_top.AddRange(rawsigmas);
-            //        break;
-            //    case 2:
-            //        _rawSigma_top.AddRange(rawsigmas);
-            //        _rawSigma_right.AddRange(rawsigmas);
-            //        break;
-            //    case 3:
-            //        _rawSigma_left.AddRange(rawsigmas);
-            //        break;
-            //    case 4:
-            //        _rawSigma_center.AddRange(rawsigmas); //middle
-            //        break;
-            //    case 5:
-            //        _rawSigma_right.AddRange(rawsigmas);
-            //        break;
-            //    case 6:
-            //        _rawSigma_bottom.AddRange(rawsigmas);
-            //        _rawSigma_left.AddRange(rawsigmas);
-            //        break;
-            //    case 7:
-            //        _rawSigma_bottom.AddRange(rawsigmas);
-            //        break;
-            //    case 8:
-            //        _rawSigma_bottom.AddRange(rawsigmas);
-            //        _rawSigma_right.AddRange(rawsigmas);
-            //        break;
-            //}
         }
         FillData();
     }
@@ -119,22 +74,6 @@ public class Trainer : MonoBehaviour
         }
         TrainingTarget.meanPoints = meanoutput;
         TrainingTarget.STD_Points = stdoutput;
-
-        //Vector2 top = CalculateMeanAndStdDev(_rawSigma_top);
-        //TrainingTarget.mean_top = top.x;
-        //TrainingTarget.std_top = top.y;
-        //Vector2 bot = CalculateMeanAndStdDev(_rawSigma_bottom);
-        //TrainingTarget.mean_bottom = bot.x;
-        //TrainingTarget.std_bottom = bot.y;
-        //Vector2 left = CalculateMeanAndStdDev( _rawSigma_left);
-        //TrainingTarget.mean_left = left.x;
-        //TrainingTarget.std_left = left.y;
-        //Vector2 right = CalculateMeanAndStdDev(_rawSigma_top);
-        //TrainingTarget.mean_right = right.x;
-        //TrainingTarget.std_right = right.y;
-        //Vector2 middle = CalculateMeanAndStdDev(_rawSigma_center);
-        //TrainingTarget.mean_middle =middle.x;
-        //TrainingTarget.std_middle = middle.y;
 
         LetsGetDirty(TrainingTarget);
         _benchmark.Stop();
