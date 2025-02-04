@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f12eb1be0aac3b248a75a25556d24d53, type: 3}
+  m_Name: Triangle
+  m_EditorClassIdentifier: 
+  CurrentShape: 3
+  mean_top: 10173.05
+  mean_bottom: 10046.83
+  mean_left: 10046.83
+  mean_right: 10173.05
+  mean_middle: 205.5491
+  std_top: 2652.658
+  std_bottom: 2931.516
+  std_left: 2931.516
+  std_right: 2652.658
+  std_middle: 5.264125

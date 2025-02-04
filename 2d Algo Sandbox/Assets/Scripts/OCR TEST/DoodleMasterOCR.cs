@@ -110,7 +110,7 @@ public class DoodleMasterOCR : MonoBehaviour
         else if(RawTrainingData != null)
         {
             if (_devIndex >= RawTrainingData.Count) { Debug.Log("DONE RECORDING!!!!!!!!!!!!!!"); return; }
-            RawTrainingData[_devIndex].Rawvec2data = tempoutputlist;
+            RawTrainingData[_devIndex].RawVector2DataPoints = tempoutputlist;
             LetsGetDirty(RawTrainingData[_devIndex]);
         }
         // Saves data written to scriptable objects through code.

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f12eb1be0aac3b248a75a25556d24d53, type: 3}
+  m_Name: Circle
+  m_EditorClassIdentifier: 
+  CurrentShape: 1
+  mean_top: 9600.987
+  mean_bottom: 9563.14
+  mean_left: 9563.14
+  mean_right: 9600.987
+  mean_middle: 239.2581
+  std_top: 2652.174
+  std_bottom: 2645.619
+  std_left: 2645.619
+  std_right: 2652.174
+  std_middle: 1.905453

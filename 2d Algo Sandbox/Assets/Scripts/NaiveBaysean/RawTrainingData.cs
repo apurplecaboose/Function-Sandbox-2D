@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(fileName = "RawTrainingData", menuName = "ScriptableObjects/Raw", order = 1)]
+[CreateAssetMenu(fileName = "RawTrainingData", menuName = "ScriptableObjects/Raw_Data", order = 1)]
 public class RawTrainingData : ScriptableObject
 {
     public enum SubShape
@@ -9,8 +9,8 @@ public class RawTrainingData : ScriptableObject
         NULL,
         Circle,
         Square,
-        Triange
+        Triangle
     }
     public SubShape CurrentShape;  
-    public List<Vector2> Rawvec2data;
+    public List<Vector2> RawVector2DataPoints;
 }
