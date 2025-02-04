@@ -666,7 +666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _devIndex: 0
-  DEV_PATTERN_CREATION_MODE: 1
+  DEV_PATTERN_CREATION_MODE: 0
   DEV_PatternScriptableObject: {fileID: 0}
   RawTrainingData:
   - {fileID: 11400000, guid: a5095f21c8ce8364b8db6c2f063dfed6, type: 2}
