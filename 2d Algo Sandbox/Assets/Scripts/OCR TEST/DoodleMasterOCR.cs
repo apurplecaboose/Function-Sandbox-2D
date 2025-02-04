@@ -2,14 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 public class DoodleMasterOCR : MonoBehaviour
 {
     [Header("DEV SETTINGS")]
+    [SerializeField] int _devIndex = 0;
     public bool DEV_PATTERN_CREATION_MODE;
-    public PatternStorageObject DEV_PatternScriptableObject; public RawTrainingData RawTrainingData;
+    public PatternStorageObject DEV_PatternScriptableObject; public List<RawTrainingData> RawTrainingData;
     [SerializeField] float _interpointdistance = 0.05f;
 
     [Header ("Attributes")]
@@ -83,7 +87,7 @@ public class DoodleMasterOCR : MonoBehaviour
     void DEV_PatternCreation()
     {
         if (!DEV_PATTERN_CREATION_MODE) return;
-        if(DEV_PatternScriptableObject == null)
+        if(DEV_PatternScriptableObject == null && RawTrainingData.Count == 0)
         {
             Debug.Log("ERROR null forgot to attach scriptable");
             return;
@@ -97,21 +101,17 @@ public class DoodleMasterOCR : MonoBehaviour
                 tempoutputlist.Add(new Vector2(datapoint.x, datapoint.y));
             }
         }
-
-        if(RawTrainingData == null && DEV_PatternScriptableObject == null)
-        {
-            return;
-        }
 #if UNITY_EDITOR
-        else if (DEV_PatternScriptableObject != null)
+        if (DEV_PatternScriptableObject != null)
         {
             DEV_PatternScriptableObject.ReferenceShapeData = tempoutputlist;
             LetsGetDirty(DEV_PatternScriptableObject);
         }
         else if(RawTrainingData != null)
         {
-            RawTrainingData.Rawvec2data = tempoutputlist;
-            LetsGetDirty(RawTrainingData);
+            if (_devIndex >= RawTrainingData.Count) { Debug.Log("DONE RECORDING!!!!!!!!!!!!!!"); return; }
+            RawTrainingData[_devIndex].Rawvec2data = tempoutputlist;
+            LetsGetDirty(RawTrainingData[_devIndex]);
         }
         // Saves data written to scriptable objects through code.
         void LetsGetDirty(UnityEngine.Object scriptableObject)
@@ -121,5 +121,8 @@ public class DoodleMasterOCR : MonoBehaviour
             AssetDatabase.Refresh();
         }
 #endif
+        //increment next drawing for training data
+        _devIndex += 1;
+        ClearDoodles();
     }
 }
