@@ -5,6 +5,11 @@ using UnityEngine;
 
 public static class HELPER_FUNCS
 {
+    public static float ABS_Z_Score(float observed, float mean, float std)
+    {
+        float output = Mathf.Abs((observed - mean) / std);
+        return output;
+    }
     public static float CalculateStdDev(List<float> data)
     {
         // Calculate mean

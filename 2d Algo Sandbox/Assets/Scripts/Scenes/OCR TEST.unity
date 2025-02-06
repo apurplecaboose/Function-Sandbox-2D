@@ -647,6 +647,7 @@ GameObject:
   - component: {fileID: 1150252616}
   - component: {fileID: 1150252613}
   - component: {fileID: 1150252615}
+  - component: {fileID: 1150252617}
   m_Layer: 0
   m_Name: DOODLE MASTER OCR
   m_TagString: Untagged
@@ -759,7 +760,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1150252610}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2e4c3efd2949524aa3338851d05653f, type: 3}
   m_Name: 
@@ -781,7 +782,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1150252610}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0aaac155b88a2b5478061032ed47753d, type: 3}
   m_Name: 
@@ -790,8 +791,42 @@ MonoBehaviour:
   _gridsize: 11
   _Keypointscale: 30000
   _KeyGridControlPoints: []
-  TrainingTarget: {fileID: 0}
-  TrainingData: []
+  TrainingTarget: {fileID: 11400000, guid: 3a2a70d65a067324d93a3171e9c9af2c, type: 2}
+  TrainingData:
+  - {fileID: 11400000, guid: bc0e5a0ba2dfce74e9a36b360532a887, type: 2}
+  - {fileID: 11400000, guid: 4466f9d47affc2a44b30a19be0477e2d, type: 2}
+  - {fileID: 11400000, guid: 079cfe3ebeaa2cc4692545384963e670, type: 2}
+  - {fileID: 11400000, guid: e83e91cf59fc4f94d97e17bdabd4ee99, type: 2}
+  - {fileID: 11400000, guid: ed8af086e09a7dd41936980623afbd44, type: 2}
+  - {fileID: 11400000, guid: 391aeee4f52af8c43bf613606343c901, type: 2}
+  - {fileID: 11400000, guid: 330298042e2e8d94aae42c8143fbe84e, type: 2}
+  - {fileID: 11400000, guid: a7e3e90fc3fedab4f997cd9237451494, type: 2}
+  - {fileID: 11400000, guid: f5938e8dee4032d4496c9569b4c2ab51, type: 2}
+  - {fileID: 11400000, guid: 69d96d5332190cf4b9cfc99cf8b0dc40, type: 2}
+  - {fileID: 11400000, guid: 49381e6ed66528240a89c6a8b3231f45, type: 2}
+--- !u!114 &1150252617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150252610}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57d9c01924596144ba4a370ad9b31323, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DOODLEMASTERCOMPONENT: {fileID: 1150252611}
+  _Keypointscale: 30000
+  _InputData: []
+  _ObservedMeanWeights: []
+  CookedShapes:
+  - {fileID: 11400000, guid: 3a2a70d65a067324d93a3171e9c9af2c, type: 2}
+  - {fileID: 11400000, guid: 406e9e4a1c5bfd546b9ac1e9d48c4b54, type: 2}
+  - {fileID: 11400000, guid: ae658e2d08fb4c84fa40282c9fc55610, type: 2}
+  - {fileID: 11400000, guid: 940b372477a2d744da7feca5d77b59b2, type: 2}
+  - {fileID: 11400000, guid: b136a88484ca66e42bd4753104633606, type: 2}
+  - {fileID: 11400000, guid: 9807e1b0409e95d448b44cccb4c59b40, type: 2}
 --- !u!1 &1482160322
 GameObject:
   m_ObjectHideFlags: 0

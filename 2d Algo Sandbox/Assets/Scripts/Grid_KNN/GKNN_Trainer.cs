@@ -13,7 +13,7 @@ public class GKNN_Trainer : MonoBehaviour
     [SerializeField] bool _DrawDebugGrid;
     [SerializeField] int _gridsize = 11;
     float _GridStepSize;
-    [SerializeField] float _Keypointscale = 75000;
+    [SerializeField] float _Keypointscale = 30000;
     [SerializeField]List<Vector2> _KeyGridControlPoints;
 
     public Cooked_Shape TrainingTarget;
@@ -28,7 +28,7 @@ public class GKNN_Trainer : MonoBehaviour
             }
         }
     }
-    private void Awake()
+    void Awake()
     {
         _benchmark = new Stopwatch();
         _KeyGridControlPoints = new List<Vector2>();
@@ -116,10 +116,10 @@ public class GKNN_Trainer : MonoBehaviour
             
             for (int i = 0; i < controlP_KNN_distances.Count; i++)// calculating the weighting using step^2/dis^2
             {
-                float step = gridStepSize / 1000; // make the weights a more readable number
-                float dis = controlP_KNN_distances[i] / 1000;
-                float stepSquared = Mathf.Pow(step, 5);
-                float disSquared = Mathf.Pow(dis, 5);
+                float step = gridStepSize / 10; // make the weights a more readable number
+                float dis = controlP_KNN_distances[i] / 10;
+                float stepSquared = Mathf.Pow(step, 3);
+                float disSquared = Mathf.Pow(dis, 3);
                 float singlePointWeight = stepSquared / disSquared;
                 subweights.Add(singlePointWeight);
             }
