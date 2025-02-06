@@ -160,7 +160,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -719,12 +719,8 @@ MonoBehaviour:
   _DoodlePointOutputVector2: []
   Patterns:
   - {fileID: 11400000, guid: 121a8d13b903a9542ad6c98d3685eed2, type: 2}
-  - {fileID: 11400000, guid: 5264624cb1027af4388d0d857044e70f, type: 2}
   - {fileID: 11400000, guid: 3634cc28d80c0864ebe9a809e6d8e4de, type: 2}
   - {fileID: 11400000, guid: 2ca092a0da4f2434fb4e99411783e947, type: 2}
-  - {fileID: 11400000, guid: a5fa7c36863f4cf4ab46202c877337df, type: 2}
-  - {fileID: 11400000, guid: 0cb29f3ae1edb604aab06080659d68d1, type: 2}
-  - {fileID: 11400000, guid: 4f3f659a51ffe0646b4f6e53a76a1957, type: 2}
   OUTPUTLIST: []
 --- !u!114 &1150252614
 MonoBehaviour:

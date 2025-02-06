@@ -21,6 +21,15 @@ public static class HELPER_FUNCS
 
         return stdDev;
     }
+    public static float CalculateStdDev(List<float> data, float mean)
+    {
+        // Calculate standard deviation
+        float sumOfSquaresOfDifferences = data.Select(val => (val - mean) * (val - mean)).Sum();
+        float stdDev = Mathf.Sqrt(sumOfSquaresOfDifferences / data.Count);
+
+        return stdDev;
+    }
+
     /// <summary>
     /// Generates a even grid with size (x,x) with range (-1,1) then scales it by a scalar
     /// </summary>
