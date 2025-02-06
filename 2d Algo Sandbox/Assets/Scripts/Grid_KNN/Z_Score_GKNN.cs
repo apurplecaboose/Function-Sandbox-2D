@@ -65,30 +65,41 @@ public class Z_Score_GKNN : MonoBehaviour
             string shapename = egg.CurrentShape.ToString();
             for ( int i = 0; i < _ObservedMeanWeights.Count; i++ )
             {
-                float clamped_mean = egg.Mean_Point_Weights[i];
-                float clamped_std = egg.STD_Point_Weights[i];
-                if (_ObservedMeanWeights[i] <= 0.15f)
-                {
-                    _ObservedMeanWeights[i] = 0;
-                }
-                if (egg.Mean_Point_Weights[i] <= 0.15f)
-                {
-                    clamped_mean = 0;
-                    clamped_std = 0;
-                }
-                clamped_std = Mathf.Clamp(egg.STD_Point_Weights[i], 0.00001f, egg.STD_Point_Weights[i]);
+                float  clamped_std = Mathf.Clamp(egg.STD_Point_Weights[i], 0.00001f, egg.STD_Point_Weights[i]);
                 float zscore = HELPER_FUNCS.ABS_Z_Score(_ObservedMeanWeights[i], clamped_mean, clamped_std);
-                zscoreList.Add(zscore);
+
+                if (zscore >= 3)
+                {
+                    //no points
+                }
+                else if (zscore >= 2)
+                {
+                    zscoreList.Add(1);
+                }
+                else if (zscore <= 0.25f)
+                {
+                    zscoreList.Add(8);
+                }
+                else if (zscore <= 0.5f)
+                {
+                    zscoreList.Add(4);
+                }
+                else if (zscore <= 1)
+                {
+                    zscoreList.Add(2);
+                }
+
+                //zscoreList.Add(zscore);
             }
-            float z_average = zscoreList.Average();
+            float z_average = zscoreList.Sum();
             outputKeyValue.Add(new KeyValuePair<float, string>(z_average, shapename));
         }
-        outputKeyValue = outputKeyValue.OrderBy(f => f.Key).ToList();
+        outputKeyValue = outputKeyValue.OrderByDescending(f => f.Key).ToList();
         
-        print("1.) " + outputKeyValue[0].Value + " z score average: " + outputKeyValue[0].Key);
+        print("1.) " + outputKeyValue[0].Value + " score: " + outputKeyValue[0].Key);
         for (int i = 1; i < outputKeyValue.Count; i++)
         {
-            print(i + 1 + ".) " + outputKeyValue[i].Value + " z score average: " + outputKeyValue[i].Key);
+            print(i + 1 + ".) " + outputKeyValue[i].Value + " score: " + outputKeyValue[i].Key);
         }
 
         _benchmark.Stop();
