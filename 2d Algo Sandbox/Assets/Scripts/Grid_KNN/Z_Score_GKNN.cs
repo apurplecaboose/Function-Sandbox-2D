@@ -65,8 +65,8 @@ public class Z_Score_GKNN : MonoBehaviour
             string shapename = egg.CurrentShape.ToString();
             for ( int i = 0; i < _ObservedMeanWeights.Count; i++ )
             {
-                float  clamped_std = Mathf.Clamp(egg.STD_Point_Weights[i], 0.00001f, egg.STD_Point_Weights[i]);
-                float zscore = HELPER_FUNCS.ABS_Z_Score(_ObservedMeanWeights[i], clamped_mean, clamped_std);
+                float clamped_std = Mathf.Clamp(egg.STD_Point_Weights[i], 0.00001f, egg.STD_Point_Weights[i]);
+                float zscore = HELPER_FUNCS.ABS_Z_Score(_ObservedMeanWeights[i], egg.Mean_Point_Weights[i], clamped_std);
 
                 if (zscore >= 3)
                 {
