@@ -68,33 +68,12 @@ public class Z_Score_GKNN : MonoBehaviour
                 float clamped_std = Mathf.Clamp(egg.STD_Point_Weights[i], 0.00001f, egg.STD_Point_Weights[i]);
                 float zscore = HELPER_FUNCS.ABS_Z_Score(_ObservedMeanWeights[i], egg.Mean_Point_Weights[i], clamped_std);
 
-                if (zscore >= 3)
-                {
-                    //no points
-                }
-                else if (zscore >= 2)
-                {
-                    zscoreList.Add(1);
-                }
-                else if (zscore <= 0.25f)
-                {
-                    zscoreList.Add(8);
-                }
-                else if (zscore <= 0.5f)
-                {
-                    zscoreList.Add(4);
-                }
-                else if (zscore <= 1)
-                {
-                    zscoreList.Add(2);
-                }
-
-                //zscoreList.Add(zscore);
+                zscoreList.Add(zscore);
             }
-            float z_average = zscoreList.Sum();
+            float z_average = zscoreList.Average();
             outputKeyValue.Add(new KeyValuePair<float, string>(z_average, shapename));
         }
-        outputKeyValue = outputKeyValue.OrderByDescending(f => f.Key).ToList();
+        outputKeyValue = outputKeyValue.OrderBy(f => f.Key).ToList();
         
         print("1.) " + outputKeyValue[0].Value + " score: " + outputKeyValue[0].Key);
         for (int i = 1; i < outputKeyValue.Count; i++)
@@ -112,7 +91,7 @@ public class Z_Score_GKNN : MonoBehaviour
         List<float> meanpointweightsOutput = new List<float>();
         for (int i = 0; i < _KeyGridControlPoints.Count; i++)
         {
-            meanpointweightsOutput.Add(Find_KNN_OneControlPoint(_KeyGridControlPoints[i], _GridStepSize, 5));
+            meanpointweightsOutput.Add(Find_KNN_OneControlPoint(_KeyGridControlPoints[i], _GridStepSize, 15));
         }
         return meanpointweightsOutput;
     }
@@ -151,16 +130,7 @@ public class Z_Score_GKNN : MonoBehaviour
                 }
                 controlP_KNN_distances.Remove(farthestKNN);
             }
-        }
-
-        for (int i = 0; i < controlP_KNN_distances.Count; i++)// calculating the weighting using step^2/dis^2
-        {
-            float step = gridStepSize / 10; // make the weights a more readable number
-            float dis = controlP_KNN_distances[i] / 10;
-            float stepSquared = Mathf.Pow(step, 3);
-            float disSquared = Mathf.Pow(dis, 3);
-            float singlePointWeight = stepSquared / disSquared;
-            weights.Add(singlePointWeight);
+            weights.AddRange(controlP_KNN_distances);
         }
         mean_weights = weights.Average();
         return mean_weights;

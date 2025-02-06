@@ -68,7 +68,7 @@ public class GKNN_Trainer : MonoBehaviour
         List<float> stdpointweightsOutput = new List<float>();
         for ( int i = 0; i < _KeyGridControlPoints.Count; i++ )
         {
-            Vector2 data = Find_KNN_OneControlPoint(_KeyGridControlPoints[i], _GridStepSize, 5);
+            Vector2 data = Find_KNN_OneControlPoint(_KeyGridControlPoints[i], _GridStepSize, 15);
             meanpointweightsOutput.Add(data.x);
             stdpointweightsOutput.Add(data.y);
         }
@@ -113,19 +113,7 @@ public class GKNN_Trainer : MonoBehaviour
                     controlP_KNN_distances.Remove(farthestKNN);
                 }
             }
-            
-            for (int i = 0; i < controlP_KNN_distances.Count; i++)// calculating the weighting using step^2/dis^2
-            {
-                float step = gridStepSize / 10; // make the weights a more readable number
-                float dis = controlP_KNN_distances[i] / 10;
-                float stepSquared = Mathf.Pow(step, 3);
-                float disSquared = Mathf.Pow(dis, 3);
-                float singlePointWeight = stepSquared / disSquared;
-                subweights.Add(singlePointWeight);
-            }
-            float mean_subweights = subweights.Average();
-            subweights.Clear();
-            weights.Add(mean_subweights);
+            weights.AddRange(controlP_KNN_distances);
         }
         mean_weights = weights.Average();
         std_weights = HELPER_FUNCS.CalculateStdDev(weights);
