@@ -1,10 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEditor.PlayerSettings;
 
 public class GKNN_Trainer : MonoBehaviour
 {
@@ -58,6 +57,10 @@ public class GKNN_Trainer : MonoBehaviour
         TrainingTarget.STD_Point_Weights = output.Item2;
         HELPER_FUNCS.LetsGetDirty(TrainingTarget);
 #endif
+        _benchmark.Stop();
+        long elapsedMilliseconds = _benchmark.ElapsedMilliseconds;
+        UnityEngine.Debug.Log("Done Training! Time in ms: " + elapsedMilliseconds);
+        _benchmark.Reset();
     }
     (List<float>, List<float>) CalcWeightsAndStatsForGrid()
     {
@@ -94,6 +97,7 @@ public class GKNN_Trainer : MonoBehaviour
             foreach (Vector2 raw_point in trainingdata.RawVector2DataPoints)
             {
                 float pointdist = Vector2.Distance(input_ControlPoint, raw_point);
+                controlP_KNN_distances.Add(pointdist);
 
                 if (controlP_KNN_distances.Count > k) //if list is larger than requested size trim the max value
                 {
@@ -108,18 +112,20 @@ public class GKNN_Trainer : MonoBehaviour
                     }
                     controlP_KNN_distances.Remove(farthestKNN);
                 }
-                foreach(float KNN in controlP_KNN_distances) // calculating the weighting using step^2/dis^2
-                {
-                    float step = gridStepSize / 1000; // make the weights a more readable number
-                    float dis = KNN / 1000;
-                    float stepSquared = Mathf.Pow(step, 5); 
-                    float disSquared = Mathf.Pow(dis, 5);
-                    float singlePointWeight = stepSquared / disSquared;
-                    subweights.Add(singlePointWeight);
-                }
-                float mean_subweights = subweights.Average();
-                weights.Add(mean_subweights);
             }
+            
+            for (int i = 0; i < controlP_KNN_distances.Count; i++)// calculating the weighting using step^2/dis^2
+            {
+                float step = gridStepSize / 1000; // make the weights a more readable number
+                float dis = controlP_KNN_distances[i] / 1000;
+                float stepSquared = Mathf.Pow(step, 5);
+                float disSquared = Mathf.Pow(dis, 5);
+                float singlePointWeight = stepSquared / disSquared;
+                subweights.Add(singlePointWeight);
+            }
+            float mean_subweights = subweights.Average();
+            subweights.Clear();
+            weights.Add(mean_subweights);
         }
         mean_weights = weights.Average();
         std_weights = HELPER_FUNCS.CalculateStdDev(weights);
