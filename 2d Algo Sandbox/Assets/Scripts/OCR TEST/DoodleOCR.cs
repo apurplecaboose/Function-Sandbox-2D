@@ -20,7 +20,7 @@ public class DoodleOCR : MonoBehaviour
     {
         foreach (Vector2 vec2point in _PointsListRaw) 
             {
-            Gizmos.DrawSphere(new Vector3(vec2point.x, vec2point.y, 0), 1005f);
+            Gizmos.DrawSphere(new Vector3(vec2point.x, vec2point.y, 0), 1000f);
             }
     }
     void Awake()

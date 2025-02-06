@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,7 +10,7 @@ public class Z_ScoreTest : MonoBehaviour
     public DoodleMasterOCR DOODLEMASTERCOMPONENT;
     
     Stopwatch _benchmark;//FOR TESTING ONLY
-    float _Keypointscale = 75000;
+    [SerializeField] float _Keypointscale = 30000;
     int _gridsize = 11;
     List<Vector2> _KeyPoints; //top left to bottom right; left to right; top to bottom; 
    
@@ -23,27 +24,12 @@ public class Z_ScoreTest : MonoBehaviour
     void Awake()
     {
         _rawsigmaNested = new List<List<float>>();
-        _observed_means = new List<float>();                           
-        _KeyPoints = GenerateGridPoints(_gridsize);
-        // scale keypoints to new arbitrary scale
-        for (int i = 0; i < _KeyPoints.Count; i++)
-        {
-            _KeyPoints[i] = new Vector2(_KeyPoints[i].x * _Keypointscale, _KeyPoints[i].y * _Keypointscale);
-        }
+        _observed_means = new List<float>();
+        _KeyPoints = new List<Vector2>();
+        var grid = HELPER_FUNCS.GenerateThenScaleGridPoints(_gridsize, _Keypointscale);
+        _KeyPoints = grid.Item1;
+
         _benchmark = new Stopwatch();
-    }
-    List<Vector2> GenerateGridPoints(int gridsize)
-    {
-        List<Vector2> keyPoints = new List<Vector2>();
-        float step = 2.0f / (gridsize - 1); // Calculate the step size based on the range and the number of points
-        for (int y = 0; y < gridsize; y++)
-        {
-            for (int x = 0; x < gridsize; x++)
-            {
-                keyPoints.Add(new Vector2(-1 + x * step, 1 - y * step));
-            }
-        }
-        return keyPoints;
     }
     void Update()
     {
@@ -57,6 +43,21 @@ public class Z_ScoreTest : MonoBehaviour
             CheckAgainstKeyPoints(_InputData);
             GetZ_Scores();
         }
+        if (Input.GetKeyDown(KeyCode.N)) // generate noise 
+        {
+            GenerateNoiseDataSet(60000, 10000);
+        }
+    }
+    void GenerateNoiseDataSet(float maxRange, int arraysize)
+    {
+        if (_InputData.Count > 0) _InputData.Clear();
+        for (int i = 0; i < arraysize; i++)
+        {
+            float rand_value1 = UnityEngine.Random.Range(-maxRange, maxRange);
+            float rand_value2 = UnityEngine.Random.Range(-maxRange, maxRange);
+            _InputData.Add(new Vector2(rand_value1, rand_value2));
+        }
+        print("random Array Generated");
     }
     void DoodleNumberSorting()
     {
@@ -93,12 +94,12 @@ public class Z_ScoreTest : MonoBehaviour
                 float squareDistance = Mathf.Pow(distancetokeypoint, 2); // squared distance to increase error
                 meansquareDistances.Add(squareDistance);
             }
-            outputlist.Add(meansquareDistances.Average());
+            outputlist.Add(meansquareDistances.Sum());
 
             return outputlist;
         }
     }
-    void GetZ_Scores()
+     void GetZ_Scores()
     {
         List<KeyValuePair<float, string>> keypairlist = new List<KeyValuePair<float, string>>();
         foreach (var cookedshape in CookedShapeReferenceData)
@@ -106,19 +107,23 @@ public class Z_ScoreTest : MonoBehaviour
             List<float> zscores = new List<float>();
             for (int i = 0; i < _observed_means.Count; i++)
             {
-                float singlezscore = Mathf.Abs((_observed_means[i] - cookedshape.meanPoints[i]) / cookedshape.STD_Points[i]);
+                float singlezscore = Mathf.Abs((_observed_means[i] - cookedshape.Mean_Point_Weights[i]) / cookedshape.STD_Point_Weights[i]);
                 zscores.Add(singlezscore); 
             }
-            float z_sum = zscores.Sum();
+            float z_sum = /*cookedshape.DifficultyMultiplier **/ zscores.Average();
             string shapename = cookedshape.CurrentShape.ToString();
             keypairlist.Add(new KeyValuePair<float, string>(z_sum, shapename));
         }
         keypairlist = keypairlist.OrderBy(f => f.Key).ToList();
         float key = keypairlist[0].Key;
         string value = keypairlist[0].Value;
-        float runnerupkey = keypairlist[1].Key;
-        string runnerupvalue = keypairlist[1].Value;
-        print("Shape Should Be: " + value + " with a zsum of: " + key + "runner up: " + runnerupvalue + " z score sum: " + runnerupkey);
+        print("0 NUMBER Shape Should Be: " + value + " with a zsum of: " + key);
+        for (int i = 1; i < keypairlist.Count; i++)
+        {
+            float runnerupkey = keypairlist[i].Key;
+            string runnerupvalue = keypairlist[i].Value;
+            print(i + " runner ups: " + runnerupvalue + " z score sum: " + runnerupkey);
+        }
         _benchmark.Stop();
         long elapsedMilliseconds = _benchmark.ElapsedMilliseconds;
         print("DONE calculating z scores! Time in ms: " + elapsedMilliseconds);

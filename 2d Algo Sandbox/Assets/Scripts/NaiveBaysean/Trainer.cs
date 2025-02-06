@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 public class Trainer : MonoBehaviour
 {
-    [SerializeField] float _Keypointscale = 75000;
+    [SerializeField] float _Keypointscale = 30000;
     [SerializeField] int _gridsize = 11;
     public Cooked_Shape TrainingTarget;
     public List<RawTrainingData> TrainingData;
@@ -18,30 +18,15 @@ public class Trainer : MonoBehaviour
     void Awake()
     {
         _rawsigmaNested = new List<List<float>>();
-
-        _KeyPoints = GenerateGridPoints(_gridsize);
-        for (int i = 0; i < _KeyPoints.Count; i++)
-        {
-            _KeyPoints[i] = new Vector2(_KeyPoints[i].x * _Keypointscale, _KeyPoints[i].y * _Keypointscale);
-        }
+        _KeyPoints = new List<Vector2>();
+        var grid = HELPER_FUNCS.GenerateThenScaleGridPoints(_gridsize,_Keypointscale);
+        _KeyPoints = grid.Item1;
 
         if(TrainingTarget == null) UnityEngine.Debug.LogError("No Target!!!");
         if (TrainingData.Count == 0) UnityEngine.Debug.LogError("No Training Data!!!");
         _benchmark = new Stopwatch();
     }
-    List<Vector2> GenerateGridPoints(int gridsize)
-    {
-        List<Vector2> keyPoints = new List<Vector2>();
-        float step = 2.0f / (gridsize - 1); // Calculate the step size based on the range and the number of points
-        for (int y = 0; y < gridsize; y++)
-        {
-            for (int x = 0; x < gridsize; x++)
-            {
-                keyPoints.Add(new Vector2(-1 + x * step, 1 - y * step));
-            }
-        }
-        return keyPoints;
-    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.T))
@@ -66,16 +51,17 @@ public class Trainer : MonoBehaviour
     {
         List<float> meanoutput = new List<float>();
         List<float> stdoutput = new List<float>();
-        for (int i = 0; i <_KeyPoints.Count; i++)
-        {
-            Vector2 mean_and_STD = CalculateMeanAndStdDev(_rawsigmaNested[i]);
-            meanoutput.Add(mean_and_STD.x);
-            stdoutput.Add(mean_and_STD.y);
+        for (int i = 0; i < _KeyPoints.Count; i++)
+        {        
+            meanoutput.Add(_rawsigmaNested[i].Average());
+            stdoutput.Add(HELPER_FUNCS.CalculateStdDev(_rawsigmaNested[i]));
         }
-        TrainingTarget.meanPoints = meanoutput;
-        TrainingTarget.STD_Points = stdoutput;
+        TrainingTarget.Mean_Point_Weights = meanoutput;
+        TrainingTarget.STD_Point_Weights = stdoutput;
 
-        LetsGetDirty(TrainingTarget);
+#if UNITY_EDITOR
+        HELPER_FUNCS.LetsGetDirty(TrainingTarget);
+#endif
         _benchmark.Stop();
         long elapsedMilliseconds = _benchmark.ElapsedMilliseconds;
         print("DONE Training Data! Time in ms: " + elapsedMilliseconds);
@@ -97,24 +83,4 @@ public class Trainer : MonoBehaviour
         }
         return outputlist;
     }
-
-    public Vector2 CalculateMeanAndStdDev(List<float> data)
-    {
-        // Calculate mean
-        float mean = data.Average();
-
-        // Calculate standard deviation
-        float sumOfSquaresOfDifferences = data.Select(val => (val - mean) * (val - mean)).Sum();
-        float stdDev = Mathf.Sqrt(sumOfSquaresOfDifferences / data.Count);
-
-        return new Vector2 (mean, stdDev);
-    }
-#if UNITY_EDITOR
-    void LetsGetDirty(UnityEngine.Object scriptableObject)
-    {
-        UnityEditor.EditorUtility.SetDirty(scriptableObject);
-        UnityEditor.AssetDatabase.SaveAssets();
-        UnityEditor.AssetDatabase.Refresh();
-    }
-#endif
 }

@@ -9,8 +9,14 @@ public class Cooked_Shape : ScriptableObject
         NULL,
         Circle,
         Square,
-        Triangle
+        Triangle,
+        Fish,
+        Z,
+        Star
     }
+    //[Range(0.0001f,3)]
+    //public float DifficultyMultiplier = 1;// values less than 1 are difficult shapes; values higher than 1 are easy shapes or overrepresented shapes
+    
     //identifiers
     [Header("Shape Type")]
     public ShapeToMatch CurrentShape;
@@ -18,12 +24,8 @@ public class Cooked_Shape : ScriptableObject
     [Header("Processed Data DEBUG")]
     //processed data
     [Header("Mean")]
-    public float mean_top;
-    public float mean_bottom, mean_left, mean_right, mean_middle;
-    public List<float> meanPoints;
+    public List<float> Mean_Point_Weights;
     [Header("STD")]
-    public float std_top;
-    public float std_bottom, std_left, std_right, std_middle;
-    public List<float> STD_Points;
+    public List<float> STD_Point_Weights;
 
 }
