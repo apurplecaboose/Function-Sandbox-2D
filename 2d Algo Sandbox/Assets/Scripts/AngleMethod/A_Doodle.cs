@@ -4,18 +4,16 @@ using UnityEngine;
 using System.Linq;
 
 [RequireComponent(typeof(LineRenderer))]
-public class DoodleOCR : MonoBehaviour
+public class A_Doodle : MonoBehaviour
 {
-    public DoodleMasterOCR parentDoodler;
+    public A_DoodleMaster parentDoodler;
 
     LineRenderer _LineRend;
     List<Vector2> _PointsListRaw;
 
     float _MinPointDistance = 0.2f, // do not go below 0.2f
           _MaxLineLength = 75, _LineLength,
-          _TargetScalingFactor = 100000;
-
-    Vector3 NewCenterPoint;
+          _TargetScalingFactor = 75;
     //void OnDrawGizmos()
     //{
     //    foreach (Vector2 vec2point in _PointsListRaw) 
@@ -93,7 +91,7 @@ public class DoodleOCR : MonoBehaviour
     {
         return Vector2.Distance(_PointsListRaw[0], _PointsListRaw[_PointsListRaw.Count - 1]);
     }
-    public List<Vector3> PrintPointOutput(int doodleNumber)
+    public List<Vector3> ReturnPointOutput(int doodleNumber)
     {
         ///center shape and rescale
         if(_LineLength > 0) _LineLength = (_PointsListRaw.Count - 1) * _MinPointDistance;//find line length;
@@ -111,10 +109,7 @@ public class DoodleOCR : MonoBehaviour
         {
             _PointsListRaw[i] = _PointsListRaw[i] - AABB_center;
             _PointsListRaw[i] *= scalingfactor;
-            //_LineRend.SetPosition(i, _PointsListRaw[i]); // for debug to illustrate the line not needed for normal usage
         }
-        //float pointDelta = Vector2.Distance(_PointsListRaw[0], _PointsListRaw[1]);
-        //float newlinelenght = pointDelta * _PointsListRaw.Count - 1;
 
         List<Vector3> returnList = new List<Vector3>();
         foreach (Vector2 drawpoint in  _PointsListRaw)
