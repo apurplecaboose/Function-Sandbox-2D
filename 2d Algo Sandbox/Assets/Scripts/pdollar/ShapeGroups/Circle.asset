@@ -17,4 +17,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 70437f141e788234795b47090d41fd8d, type: 2}
   - {fileID: 11400000, guid: c6fe677b787f7b44d873c5f528aecf61, type: 2}
   - {fileID: 11400000, guid: 69a093a229f1a3947b386753ced0a28b, type: 2}
+  - {fileID: 11400000, guid: a96113f93a2690c42b0ff44c71739940, type: 2}
+  - {fileID: 11400000, guid: b080c5b64175b7c4ab2c882e249e2e5e, type: 2}
+  - {fileID: 11400000, guid: ccc89330347c1f749a65bbbf5134d8d5, type: 2}
+  - {fileID: 11400000, guid: 381bdcb1c7b705b4a82e2b353776f3d3, type: 2}
+  - {fileID: 11400000, guid: 27c76d8949761eb468a2fba523d51904, type: 2}
+  - {fileID: 11400000, guid: c0cec23eb6138cf428b96129a4c7cb7e, type: 2}
+  - {fileID: 11400000, guid: 4e4244c2b289f7e49bd17e0b69f0e4ee, type: 2}
+  - {fileID: 11400000, guid: 3afb2d9456238a5438b4b5c0369874df, type: 2}
   CurrentAlignCost: 2046.821
