@@ -13,8 +13,8 @@ public class DoodleMasterOCR : MonoBehaviour
     [Header("DEV SETTINGS")]
     [SerializeField] int _devIndex = 0;
     public bool DEV_PATTERN_CREATION_MODE;
-    public PatternStorageObject DEV_PatternScriptableObject; public List<RawTrainingData> RawTrainingData;
-    [SerializeField] float _interpointdistance = 0.05f;
+    public List<RawTrainingData> RawTrainingData;
+
 
     [Header ("Attributes")]
     public DoodleOCR DoodlerPrefab;
@@ -57,7 +57,7 @@ public class DoodleMasterOCR : MonoBehaviour
     }
     public void EndDoodlin()
     {
-        DrawingOutput.AddRange(_currentDoodler.PrintPointOutput(0));
+        DrawingOutput.AddRange(_currentDoodler.ExportCleanPointCloud(0));
         _currentDoodler.SetLineColor(Color.cyan); //optional color change
         _currentDoodler = null;
     }
@@ -82,7 +82,7 @@ public class DoodleMasterOCR : MonoBehaviour
     void DEV_PatternCreation()
     {
         if (!DEV_PATTERN_CREATION_MODE) return;
-        if(DEV_PatternScriptableObject == null && RawTrainingData.Count == 0)
+        if(RawTrainingData.Count == 0)
         {
             Debug.Log("ERROR null forgot to attach scriptable");
             return;
@@ -97,12 +97,7 @@ public class DoodleMasterOCR : MonoBehaviour
             }
         }
 #if UNITY_EDITOR
-        if (DEV_PatternScriptableObject != null)
-        {
-            DEV_PatternScriptableObject.ReferenceShapeData = tempoutputlist;
-            LetsGetDirty(DEV_PatternScriptableObject);
-        }
-        else if(RawTrainingData != null)
+        if (RawTrainingData != null)
         {
             if (_devIndex >= RawTrainingData.Count) { Debug.Log("DONE RECORDING!!!!!!!!!!!!!!"); return; }
             RawTrainingData[_devIndex].RawVector2DataPoints = tempoutputlist;

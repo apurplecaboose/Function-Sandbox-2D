@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Diagnostics;
+using System.Linq;
 
 [RequireComponent(typeof(LineRenderer))]
 public class DoodleOCR : MonoBehaviour
@@ -13,13 +14,16 @@ public class DoodleOCR : MonoBehaviour
     List<Vector2> _PointsListRaw;
 
     float _MinPointDistance = 0.1f,
-          _MaxLineLength = 50, _LineLength,
+          _MaxUnscaledLineLength = 45, _LineLength,
           _targetPathLength = 50;
+    bool _CutOff;
+
+    int _targetArraysize = 400;
     void OnDrawGizmos()
     {
         foreach (Vector2 vec2point in _PointsListRaw) 
             {
-            Gizmos.DrawSphere(new Vector3(vec2point.x, vec2point.y, 0), 0.51f);
+            Gizmos.DrawSphere(new Vector3(vec2point.x, vec2point.y, 0), 0.1125f);
             }
     }
     void Awake()
@@ -75,38 +79,81 @@ public class DoodleOCR : MonoBehaviour
     }
     void IsLineTooLong()
     {
-        if (_LineLength < 0) return;
+        if (_CutOff) return;
         _LineLength = (_PointsListRaw.Count - 1) * _MinPointDistance;
-        if (_LineLength >= _MaxLineLength)
+        if (_LineLength >= _MaxUnscaledLineLength)
         {
             parentDoodler.EndDoodlin();
-            _LineLength = -_LineLength;
             UnityEngine.Debug.Log("Watch it! Line is too Loooooong it was cut short");
+            _CutOff = true;
         }
     }
-    public List<Vector3> PrintPointOutput(int doodleNumber)
+    public List<Vector3> ExportCleanPointCloud(int doodleNumber)
     {
         _stopwatch.Start();
-        ///center shape and rescale
-        if(_LineLength > 0) _LineLength = (_PointsListRaw.Count - 1) * _MinPointDistance;//find line length;
-
-        Vector2 AABB_center = CalculateCentroid(_PointsListRaw);
-        float scalingfactor = _targetPathLength / Mathf.Abs(_LineLength);//scale according to line length
-        _PointsListRaw = PruneAndTrim(_PointsListRaw, 5f, _MinPointDistance * 1.5f);
+        Vector2 AABB_center = CalculateCentroid(_PointsListRaw); // find center of point cloud
+        _PointsListRaw = PruneAndTrim(_PointsListRaw, 5f, _MinPointDistance * 1.5f);//angle gating
+        //get line length
+        _LineLength = 0;
+        for (int i = 0; i < _PointsListRaw.Count - 1; i++)
+        {
+            Vector2 a = _PointsListRaw[i];
+            Vector2 b = _PointsListRaw[i + 1];
+            _LineLength += Vector2.Distance(a, b);
+        }
+        //scale according to line length
+        float scalingfactor = _targetPathLength / _LineLength;//scale according to line length
         for (int i = 0; i < _PointsListRaw.Count; i++)
         {
             _PointsListRaw[i] = _PointsListRaw[i] - AABB_center;
             _PointsListRaw[i] *= scalingfactor;
         }
 
+        //add point interpolation
+        float targetpointDistance = _targetPathLength / _targetArraysize;
+        List<Vector2> interpolatedpoints = new List<Vector2>();
+        for (int i = 0; i < _PointsListRaw.Count - 1; i++)
+        {
+            Vector2 a = _PointsListRaw[i];
+            Vector2 b = _PointsListRaw[i + 1];
+            float dis = Vector2.Distance(a, b);
+            Vector2 abUnit = (b-a).normalized;
+            if(dis > targetpointDistance)
+            {
+                int numberinterpolatedpoints = (int)Mathf.Floor(dis/targetpointDistance);
+                for (int j = 0; j < numberinterpolatedpoints; j++)
+                {
+                    Vector2 p = a + (abUnit * targetpointDistance * j);
+                    interpolatedpoints.Add(p);
+                }
+            }
+        }
+        _PointsListRaw.AddRange(interpolatedpoints);
+        //remove extra points
+        List<KeyValuePair<Vector2, float>> smallestDistances = new List<KeyValuePair<Vector2, float>>();
+        int numberToRemove = _PointsListRaw.Count - _targetArraysize;
+        for (int i = 0; i < _PointsListRaw.Count - 1; i++)
+        {
+            Vector2 a = _PointsListRaw[i];
+            Vector2 b = _PointsListRaw[i + 1];
+            float distance = Vector2.Distance(a, b);
+            smallestDistances.Add(new KeyValuePair<Vector2, float>(a, distance));
+        }
+        smallestDistances.OrderBy(f => f.Value).ToList();
+        for (int i = 0; i < numberToRemove; i++)
+        {
+            _PointsListRaw.Remove(smallestDistances[i].Key);
+        }
+        //export
         List<Vector3> returnList = new List<Vector3>();
         foreach (Vector2 drawpoint in  _PointsListRaw)
         {
             returnList.Add(new Vector3(drawpoint.x, drawpoint.y, doodleNumber));
         }
+
         _stopwatch.Stop();
         long elapsedMilliseconds = _stopwatch.ElapsedMilliseconds;
-        UnityEngine.Debug.Log("Printing Doodler Output! Time in ms: " + elapsedMilliseconds);
+        UnityEngine.Debug.Log("Exporting Doodler Output!    Time in ms: " + elapsedMilliseconds + "     array count is" + _PointsListRaw.Count);
         return returnList;  
     }
 
@@ -189,33 +236,28 @@ public class DoodleOCR : MonoBehaviour
             {
                 inputdata.Remove(garbage);
             }
-            //print("one dis pass");
+            //print("one distance pass");
         } while (inputdata.Count < previousCount);
 
         return inputdata;
     }
 
-
-
-
     //for visuals
     public void SetLineColor(Color targetColor)
     {
         _LineRend.colorGradient = SingleColorToGradient(targetColor);
+
+        Gradient SingleColorToGradient(Color color)
+        {
+            Gradient gradient = new Gradient();
+            GradientColorKey[] colorKeys = new GradientColorKey[2];
+            colorKeys[0] = new GradientColorKey(color, 0.0f);
+            colorKeys[1] = new GradientColorKey(color, 1.0f);
+            GradientAlphaKey[] alphaKeys = new GradientAlphaKey[2];
+            alphaKeys[0] = new GradientAlphaKey(color.a, 0.0f);
+            alphaKeys[1] = new GradientAlphaKey(color.a, 1.0f);
+            gradient.SetKeys(colorKeys, alphaKeys);
+            return gradient;
+        }
     }
-    Gradient SingleColorToGradient(Color color)
-    {
-        Gradient gradient = new Gradient();
-        GradientColorKey[] colorKeys = new GradientColorKey[2];
-        colorKeys[0] = new GradientColorKey(color, 0.0f);
-        colorKeys[1] = new GradientColorKey(color, 1.0f);
-        GradientAlphaKey[] alphaKeys = new GradientAlphaKey[2];
-        alphaKeys[0] = new GradientAlphaKey(color.a, 0.0f);
-        alphaKeys[1] = new GradientAlphaKey(color.a, 1.0f);
-        gradient.SetKeys(colorKeys, alphaKeys);
-        return gradient;
-    }
-
-
-
 }
