@@ -433,7 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b02df4a52f31d94193b84c3a1bd2482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DOODLEMASTERCOMPONENT: {fileID: 1150252611}
+  DOODLEMASTERCOMPONENT: {fileID: 0}
   _DoodlePointOutputVector2: []
   SubDoodleNumber: 0
 --- !u!4 &792137507
@@ -463,7 +463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ee110c84a523cc4eb96b92bd2e5ee71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DOODLEMASTERCOMPONENT: {fileID: 1150252611}
+  DOODLEMASTERCOMPONENT: {fileID: 0}
   _DoodlePointOutputVector2: []
 --- !u!1 &904892768
 GameObject:
@@ -709,13 +709,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1150252610}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4dbd74e64c7c1bd4981639ef1a642f5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TESTINGDEBUGDISTANCES: []
-  DOODLEMASTERCOMPONENT: {fileID: 1150252611}
+  DOODLEMASTERCOMPONENT: {fileID: 0}
   _DoodlePointOutputVector2: []
   Patterns:
   - {fileID: 11400000, guid: 121a8d13b903a9542ad6c98d3685eed2, type: 2}
@@ -761,7 +761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2e4c3efd2949524aa3338851d05653f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DOODLEMASTERCOMPONENT: {fileID: 1150252611}
+  DOODLEMASTERCOMPONENT: {fileID: 0}
   _Keypointscale: 30000
   _InputData: []
   CookedShapeReferenceData:
@@ -812,7 +812,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57d9c01924596144ba4a370ad9b31323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DOODLEMASTERCOMPONENT: {fileID: 1150252611}
+  DOODLEMASTERCOMPONENT: {fileID: 0}
   _Keypointscale: 30000
   _InputData: []
   _ObservedMeanWeights: []
