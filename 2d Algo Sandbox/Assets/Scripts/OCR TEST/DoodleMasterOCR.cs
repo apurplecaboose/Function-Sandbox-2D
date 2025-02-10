@@ -42,10 +42,6 @@ public class DoodleMasterOCR : MonoBehaviour
         {
             _currentDoodler = Instantiate(DoodlerPrefab, this.transform); // instantiate as a child of the doodle master.
             _currentDoodler.parentDoodler = this;
-            if(DEV_PATTERN_CREATION_MODE)
-            {
-                _currentDoodler.DEV_PatternCreationDoodleMode(_interpointdistance, 1000000);
-            }
             _DoodlesList.Add(_currentDoodler); // adds all doodles to a list for easy clearing
         }
         if (Input.GetKeyUp(KeyCode.Mouse0))

@@ -1,21 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
+using System.Diagnostics;
 
 [RequireComponent(typeof(LineRenderer))]
 public class DoodleOCR : MonoBehaviour
 {
+    Stopwatch _stopwatch;
     public DoodleMasterOCR parentDoodler;
 
     LineRenderer _LineRend;
     List<Vector2> _PointsListRaw;
 
-    float _MinPointDistance = 0.2f, // do not go below 0.2f
+    float _MinPointDistance = 0.1f,
           _MaxLineLength = 50, _LineLength,
           _targetPathLength = 50;
-
-    Vector3 NewCenterPoint;
     void OnDrawGizmos()
     {
         foreach (Vector2 vec2point in _PointsListRaw) 
@@ -26,11 +25,7 @@ public class DoodleOCR : MonoBehaviour
     void Awake()
     {
         _LineRend = this.GetComponent<LineRenderer>();
-    }
-    public void DEV_PatternCreationDoodleMode(float interpointdistance, float maxlinelength)
-    {
-        _MinPointDistance = interpointdistance;
-        _MaxLineLength = maxlinelength;
+        _stopwatch=new Stopwatch();
     }
     void Update()
     {
@@ -86,22 +81,14 @@ public class DoodleOCR : MonoBehaviour
         {
             parentDoodler.EndDoodlin();
             _LineLength = -_LineLength;
-            Debug.Log("Watch it! Line is too Loooooong it was cut short");
+            UnityEngine.Debug.Log("Watch it! Line is too Loooooong it was cut short");
         }
     }
     public List<Vector3> PrintPointOutput(int doodleNumber)
     {
+        _stopwatch.Start();
         ///center shape and rescale
         if(_LineLength > 0) _LineLength = (_PointsListRaw.Count - 1) * _MinPointDistance;//find line length;
-
-        ////find center
-        //float min_X = _PointsListRaw.Min((v => v.x));
-        //float max_X = _PointsListRaw.Max((v => v.x));
-        //float min_Y = _PointsListRaw.Min((v => v.y));
-        //float max_Y = _PointsListRaw.Max((v => v.y));
-        //float xcenter = (max_X + min_X) / 2;
-        //float ycenter = (max_Y + min_Y) / 2;
-        //Vector2 AABB_center = new Vector2(xcenter, ycenter);
 
         Vector2 AABB_center = CalculateCentroid(_PointsListRaw);
         float scalingfactor = _targetPathLength / Mathf.Abs(_LineLength);//scale according to line length
@@ -117,12 +104,11 @@ public class DoodleOCR : MonoBehaviour
         {
             returnList.Add(new Vector3(drawpoint.x, drawpoint.y, doodleNumber));
         }
+        _stopwatch.Stop();
+        long elapsedMilliseconds = _stopwatch.ElapsedMilliseconds;
+        UnityEngine.Debug.Log("Printing Doodler Output! Time in ms: " + elapsedMilliseconds);
         return returnList;  
     }
-
-
-
-
 
     Vector2 CalculateCentroid(List<Vector2> points)
     {
@@ -178,7 +164,7 @@ public class DoodleOCR : MonoBehaviour
             {
                 inputdata.Remove(garbage);
             }
-            print("one angle pass");
+            //print("one angle pass");
         } while (inputdata.Count < previousCount);
         do
         {
@@ -203,7 +189,7 @@ public class DoodleOCR : MonoBehaviour
             {
                 inputdata.Remove(garbage);
             }
-            print("one dis pass");
+            //print("one dis pass");
         } while (inputdata.Count < previousCount);
 
         return inputdata;
