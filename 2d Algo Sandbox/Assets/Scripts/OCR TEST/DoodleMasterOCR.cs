@@ -61,7 +61,6 @@ public class DoodleMasterOCR : MonoBehaviour
     }
     public void EndDoodlin()
     {
-        CurrentDoodleOpenDistance = _currentDoodler.CalculateOpenDistance();
         DrawingOutput.AddRange(_currentDoodler.PrintPointOutput(0));
         _currentDoodler.SetLineColor(Color.cyan); //optional color change
         _currentDoodler = null;

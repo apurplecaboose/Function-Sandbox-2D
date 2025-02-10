@@ -12,15 +12,15 @@ public class DoodleOCR : MonoBehaviour
     List<Vector2> _PointsListRaw;
 
     float _MinPointDistance = 0.2f, // do not go below 0.2f
-          _MaxLineLength = 75, _LineLength,
-          _TargetScalingFactor = 100000;
+          _MaxLineLength = 50, _LineLength,
+          _targetPathLength = 50;
 
     Vector3 NewCenterPoint;
     void OnDrawGizmos()
     {
         foreach (Vector2 vec2point in _PointsListRaw) 
             {
-            Gizmos.DrawSphere(new Vector3(vec2point.x, vec2point.y, 0), 1000f);
+            Gizmos.DrawSphere(new Vector3(vec2point.x, vec2point.y, 0), 0.51f);
             }
     }
     void Awake()
@@ -89,32 +89,28 @@ public class DoodleOCR : MonoBehaviour
             Debug.Log("Watch it! Line is too Loooooong it was cut short");
         }
     }
-    public float CalculateOpenDistance()
-    {
-        return Vector2.Distance(_PointsListRaw[0], _PointsListRaw[_PointsListRaw.Count - 1]);
-    }
     public List<Vector3> PrintPointOutput(int doodleNumber)
     {
         ///center shape and rescale
         if(_LineLength > 0) _LineLength = (_PointsListRaw.Count - 1) * _MinPointDistance;//find line length;
 
-        //find center
-        float min_X = _PointsListRaw.Min((v => v.x));
-        float max_X = _PointsListRaw.Max((v => v.x));
-        float min_Y = _PointsListRaw.Min((v => v.y));
-        float max_Y = _PointsListRaw.Max((v => v.y));
-        float xcenter = (max_X + min_X) / 2;
-        float ycenter = (max_Y + min_Y) / 2;
-        Vector2 AABB_center = new Vector2(xcenter, ycenter);
-        float scalingfactor = _TargetScalingFactor / Mathf.Abs(_LineLength);//scale according to line length
+        ////find center
+        //float min_X = _PointsListRaw.Min((v => v.x));
+        //float max_X = _PointsListRaw.Max((v => v.x));
+        //float min_Y = _PointsListRaw.Min((v => v.y));
+        //float max_Y = _PointsListRaw.Max((v => v.y));
+        //float xcenter = (max_X + min_X) / 2;
+        //float ycenter = (max_Y + min_Y) / 2;
+        //Vector2 AABB_center = new Vector2(xcenter, ycenter);
+
+        Vector2 AABB_center = CalculateCentroid(_PointsListRaw);
+        float scalingfactor = _targetPathLength / Mathf.Abs(_LineLength);//scale according to line length
+        _PointsListRaw = PruneAndTrim(_PointsListRaw, 5f, _MinPointDistance * 1.5f);
         for (int i = 0; i < _PointsListRaw.Count; i++)
         {
             _PointsListRaw[i] = _PointsListRaw[i] - AABB_center;
             _PointsListRaw[i] *= scalingfactor;
-            //_LineRend.SetPosition(i, _PointsListRaw[i]); // for debug to illustrate the line not needed for normal usage
         }
-        //float pointDelta = Vector2.Distance(_PointsListRaw[0], _PointsListRaw[1]);
-        //float newlinelenght = pointDelta * _PointsListRaw.Count - 1;
 
         List<Vector3> returnList = new List<Vector3>();
         foreach (Vector2 drawpoint in  _PointsListRaw)
@@ -123,6 +119,98 @@ public class DoodleOCR : MonoBehaviour
         }
         return returnList;  
     }
+
+
+
+
+
+    Vector2 CalculateCentroid(List<Vector2> points)
+    {
+        Vector2 sum = Vector2.zero;
+        foreach (Vector2 point in points)
+        {
+            sum += point;
+        }
+        return sum / points.Count;
+    }
+    List<Vector2> PruneAndTrim(List<Vector2> inputdata, float thresholdangle, float pointdistanceThreshold)
+    {
+        /// <summary>
+        /// returns true if useless, false if useful
+        /// </summary>
+        /// <param name="A"></param>
+        /// <param name="B"></param>
+        /// <param name="C"></param>
+        /// <param name="anglethreshold"></param>
+        /// <returns></returns>
+        bool UselessPointCheck(Vector2 A, Vector2 B, Vector2 C, float anglethreshold)
+        {
+            Vector2 AB = B - A;
+            Vector2 BC = C - B;
+
+            AB.Normalize();
+            BC.Normalize();
+
+            float dotProduct = Vector2.Dot(AB, BC);
+            float angleInDegrees = Mathf.Acos(dotProduct) * Mathf.Rad2Deg;
+
+            if (angleInDegrees < anglethreshold) return true;
+            else return false;
+        }
+
+        if (inputdata.Count <= 3) return inputdata;
+        int previousCount;
+        do
+        {
+            previousCount = inputdata.Count;
+            List<Vector2> uselessanglepoints = new List<Vector2>();
+            for (int i = 0; i < inputdata.Count - 2; i++)
+            {
+                Vector2 a = inputdata[i];
+                Vector2 b = inputdata[i + 1];
+                Vector2 c = inputdata[i + 2];
+                if (UselessPointCheck(a, b, c, thresholdangle))
+                {
+                    uselessanglepoints.Add(b);
+                }
+            }
+            foreach (Vector2 garbage in uselessanglepoints)
+            {
+                inputdata.Remove(garbage);
+            }
+            print("one angle pass");
+        } while (inputdata.Count < previousCount);
+        do
+        {
+            previousCount = inputdata.Count;
+            List<Vector2> uselessdistancepoints = new List<Vector2>();
+            for (int i = 0; i < inputdata.Count; i++)
+            {
+                Vector2 a = inputdata[i];
+                Vector2 b = inputdata[0];
+                if (i != inputdata.Count - 1)
+                {
+                    b = inputdata[i + 1];
+                }
+
+                float dis = Vector2.Distance(a, b);
+                if (dis < pointdistanceThreshold)
+                {
+                    uselessdistancepoints.Add(b);
+                }
+            }
+            foreach (Vector2 garbage in uselessdistancepoints)
+            {
+                inputdata.Remove(garbage);
+            }
+            print("one dis pass");
+        } while (inputdata.Count < previousCount);
+
+        return inputdata;
+    }
+
+
+
 
     //for visuals
     public void SetLineColor(Color targetColor)
@@ -141,4 +229,7 @@ public class DoodleOCR : MonoBehaviour
         gradient.SetKeys(colorKeys, alphaKeys);
         return gradient;
     }
+
+
+
 }
