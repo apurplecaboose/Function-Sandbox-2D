@@ -601,12 +601,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3965e34a12f240b43be3b9ffc72cf430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DoodlerPrefab: {fileID: 2938028090718718157, guid: 95b90c1f67c125b4fab317989cbbb0df, type: 3}
   _devIndex: 0
   DEV_PATTERN_CREATION_MODE: 0
   RawTrainingData: []
-  DoodlerPrefab: {fileID: 2938028090718718157, guid: 95b90c1f67c125b4fab317989cbbb0df, type: 3}
+  shapegroups:
+  - {fileID: 11400000, guid: 5f21357f4d81d24408eeddb3b7bd7634, type: 2}
+  - {fileID: 11400000, guid: 96fe45be830f03c44875bea722f4f8a2, type: 2}
+  - {fileID: 11400000, guid: 3e4308c778769554682df7344a537956, type: 2}
+  - {fileID: 11400000, guid: 8c4cb83598186dd4194c911aeedc7b4b, type: 2}
   _DoodlesList: []
-  CurrentDoodleOpenDistance: 0
   DrawingOutput: []
 --- !u!4 &1150252612
 Transform:
