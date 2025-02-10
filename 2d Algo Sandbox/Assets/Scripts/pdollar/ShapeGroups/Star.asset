@@ -17,7 +17,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 20c90d5082046a841a778894d15bbaab, type: 2}
   - {fileID: 11400000, guid: 0fb7364ff0440294293ead57a9753237, type: 2}
   - {fileID: 11400000, guid: 93589fe4eed3ef04a8fcb5500cddc38c, type: 2}
-  - {fileID: 11400000, guid: 2dc1f160bf320c0449e06e471c4cef68, type: 2}
-  - {fileID: 11400000, guid: 587acab320b38e049a70aa91ca0acd14, type: 2}
-  - {fileID: 11400000, guid: 16519a312b11f1143b0be0b69e4d4038, type: 2}
-  CurrentAlignCost: 0
+  CurrentAlignCost: 325.3305

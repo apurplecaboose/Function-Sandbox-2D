@@ -44,12 +44,12 @@ public class OCR_K_nearestneighbor : MonoBehaviour
         _benchmark.Start();
         //testing shape openess
         float closedthresholdvalue = 0.5f;
-        if (DOODLEMASTERCOMPONENT.CurrentDoodleOpenDistance < closedthresholdvalue)
-        {
-            MatchBestPattern(_DoodlePointOutputVector2, _ClosedPatterns, false);
-            //print("CLOSED Shape");
-        }
-        else
+        //if (DOODLEMASTERCOMPONENT.CurrentDoodleOpenDistance < closedthresholdvalue)
+        //{
+        //    MatchBestPattern(_DoodlePointOutputVector2, _ClosedPatterns, false);
+        //    //print("CLOSED Shape");
+        ////}
+        //else
         {
             MatchBestPattern(_DoodlePointOutputVector2, _OpenPatterns, true);
             //print("OPEN Shape");

@@ -10,20 +10,18 @@ using UnityEditor;
 #endif
 public class DoodleMasterOCR : MonoBehaviour
 {
+    [Header("ATTACH")]
+    public DoodleOCR DoodlerPrefab;
+
     [Header("DEV SETTINGS")]
     [SerializeField] int _devIndex = 0;
     public bool DEV_PATTERN_CREATION_MODE;
     public List<RawShapes> RawTrainingData;
-
+    public List<ShapeGroup> shapegroups;
 
     [Header ("Attributes")]
-    public DoodleOCR DoodlerPrefab;
     DoodleOCR _currentDoodler;
     [SerializeField] List<DoodleOCR> _DoodlesList; // currently serialized for visibility
-
-
-    [HideInInspector]public float CurrentDoodleOpenDistance; //currently being called by OCR K_nearestneighbor could be made private if to combine the two scripts
-
     public List<Vector3> DrawingOutput; // x,y,doodlenumber
 
     void Update()
@@ -36,6 +34,11 @@ public class DoodleMasterOCR : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
             ClearDoodles();
+            foreach (ShapeGroup group in shapegroups)
+            {
+                HELPER_FUNCS.LetsGetDirty(group);
+            }
+            print("got dirty");
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -101,14 +104,8 @@ public class DoodleMasterOCR : MonoBehaviour
         {
             if (_devIndex >= RawTrainingData.Count) { Debug.Log("DONE RECORDING!!!!!!!!!!!!!!"); return; }
             RawTrainingData[_devIndex].RawVector2DataPoints = tempoutputlist;
-            LetsGetDirty(RawTrainingData[_devIndex]);
-        }
-        // Saves data written to scriptable objects through code.
-        void LetsGetDirty(UnityEngine.Object scriptableObject)
-        {
-            EditorUtility.SetDirty(scriptableObject);
-            AssetDatabase.SaveAssets();
-            AssetDatabase.Refresh();
+            HELPER_FUNCS.LetsGetDirty(RawTrainingData[_devIndex]);
+            print("Getting Dirty");
         }
 #endif
         //increment next drawing for training data

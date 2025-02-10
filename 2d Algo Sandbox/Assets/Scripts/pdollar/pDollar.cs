@@ -12,9 +12,10 @@ public class pDollar : MonoBehaviour
     public List<Vector2> _InputData;
     public float ThresholdCost = 1000000;
     public int ExpectedArraySize = 400;
+    List<Vector2> _currentPatternData;
     void Start()
     {
-        
+        _currentPatternData = new List<Vector2>();
     }
     void Update()
     {
@@ -41,12 +42,14 @@ public class pDollar : MonoBehaviour
             List<float> variations_alignmentcost = new List<float>();
             foreach(var variation in shape.RawData)
             {
-                List<Vector2> varData = variation.RawVector2DataPoints;
+                _currentPatternData.Clear();
+                _currentPatternData.AddRange(variation.RawVector2DataPoints);
+
                 float var_alignmentcost = 0;
                 foreach (Vector2 in_v in _InputData)
                 {
-                    var output = NearestNeighbor_OnePoint(in_v, varData);
-                    varData.Remove(output.Item1); // remove the pair from the list
+                    var output = NearestNeighbor_OnePoint(in_v, _currentPatternData);
+                    _currentPatternData.Remove(output.Item1); // remove the pair from the list
                     var_alignmentcost += output.Item2;
                 }
                 variations_alignmentcost.Add(var_alignmentcost);
