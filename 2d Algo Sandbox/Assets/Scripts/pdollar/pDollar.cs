@@ -3,9 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using System.Diagnostics;
 
 public class pDollar : MonoBehaviour
 {
+    Stopwatch _himark;
+
     public List<ShapeGroup> RefShapes;
     public DoodleMasterOCR DOODLEMASTERCOMPONENT;
 
@@ -15,6 +18,7 @@ public class pDollar : MonoBehaviour
     List<Vector2> _currentPatternData;
     void Start()
     {
+        _himark = new Stopwatch();
         _currentPatternData = new List<Vector2>();
     }
     void Update()
@@ -25,12 +29,16 @@ public class pDollar : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
+            _himark.Start();
             MatchShapes();
+            _himark.Stop();
+            long elapsedMilliseconds = _himark.ElapsedMilliseconds;
+            UnityEngine.Debug.Log("Done Matching! Time in ms:   " + elapsedMilliseconds);
         }
     }
-    public void MatchShapes()
+    void MatchShapes()
     {
-        if(_InputData.Count < ExpectedArraySize)
+        if (_InputData.Count < ExpectedArraySize)
         {
             print("Null Pattern not enough data this is probably a point");
             //null pattern
@@ -39,8 +47,9 @@ public class pDollar : MonoBehaviour
         List<float> alignmentcosts = new List<float>();
         foreach (var shape in RefShapes)
         {
+            shape.CurrentAlignCost = 10000000000000000; // reset old data
             List<float> variations_alignmentcost = new List<float>();
-            foreach(var variation in shape.RawData)
+            foreach (var variation in shape.RawData)
             {
                 _currentPatternData.Clear();
                 _currentPatternData.AddRange(variation.RawVector2DataPoints);
@@ -81,10 +90,10 @@ public class pDollar : MonoBehaviour
         foreach (Vector2 p_point in inputMatchList)
         {
             float pointdist = Vector2.Distance(inputPoint, p_point);
-            if(pointdist < currentSmallesDistance)
+            if (pointdist < currentSmallesDistance)
             {
                 currentSmallesDistance = pointdist;
-                nearestpoint = new KeyValuePair<Vector2, float>(p_point,pointdist);
+                nearestpoint = new KeyValuePair<Vector2, float>(p_point, pointdist);
             }
         }
         return (nearestpoint.Key, nearestpoint.Value);
@@ -101,3 +110,4 @@ public class pDollar : MonoBehaviour
         }
     }
 }
+
