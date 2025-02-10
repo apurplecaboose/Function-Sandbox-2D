@@ -403,68 +403,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onswitch: 1
   data: {fileID: 11400000, guid: 5264624cb1027af4388d0d857044e70f, type: 2}
---- !u!1 &792137505
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 792137507}
-  - component: {fileID: 792137506}
-  - component: {fileID: 792137508}
-  m_Layer: 0
-  m_Name: OPEN SHAPE DETECTOR
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &792137506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 792137505}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b02df4a52f31d94193b84c3a1bd2482, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DOODLEMASTERCOMPONENT: {fileID: 0}
-  _DoodlePointOutputVector2: []
-  SubDoodleNumber: 0
---- !u!4 &792137507
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 792137505}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &792137508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 792137505}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ee110c84a523cc4eb96b92bd2e5ee71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DOODLEMASTERCOMPONENT: {fileID: 0}
-  _DoodlePointOutputVector2: []
 --- !u!1 &904892768
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,11 +581,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1150252612}
   - component: {fileID: 1150252611}
-  - component: {fileID: 1150252614}
-  - component: {fileID: 1150252616}
   - component: {fileID: 1150252613}
-  - component: {fileID: 1150252615}
-  - component: {fileID: 1150252617}
   m_Layer: 0
   m_Name: DOODLE MASTER OCR
   m_TagString: Untagged
@@ -668,21 +602,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _devIndex: 0
-  DEV_PATTERN_CREATION_MODE: 0
-  DEV_PatternScriptableObject: {fileID: 0}
-  RawTrainingData:
-  - {fileID: 11400000, guid: 84fe0a12e6ba82d4f855061cc5488ec0, type: 2}
-  - {fileID: 11400000, guid: 34e5422d1004a054aa382590421dd7fe, type: 2}
-  - {fileID: 11400000, guid: b5b84085b54a9fe478eed63be38c763d, type: 2}
-  - {fileID: 11400000, guid: d378353f31ac67e4aa899c03a07fdb66, type: 2}
-  - {fileID: 11400000, guid: 0c75b07875b187748bfe5c260820f03f, type: 2}
-  - {fileID: 11400000, guid: 14a204d03888a7c42a5b26dbdac79da9, type: 2}
-  - {fileID: 11400000, guid: 8f2c2be601304454c83b568928500039, type: 2}
-  - {fileID: 11400000, guid: 7c233692a4b5ce04f91976d38ddee3a2, type: 2}
-  - {fileID: 11400000, guid: 9c0b76b8a35b92941bdb0c123a6f6cd6, type: 2}
-  - {fileID: 11400000, guid: 31485b6370d1c0e43b12674cd1b998b4, type: 2}
-  - {fileID: 11400000, guid: 65a73f3193562a242b6a79ef8ce6c58f, type: 2}
-  _interpointdistance: 0.05
+  DEV_PATTERN_CREATION_MODE: 1
+  RawTrainingData: []
   DoodlerPrefab: {fileID: 2938028090718718157, guid: 95b90c1f67c125b4fab317989cbbb0df, type: 3}
   _DoodlesList: []
   CurrentDoodleOpenDistance: 0
@@ -709,120 +630,20 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1150252610}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dbd74e64c7c1bd4981639ef1a642f5c, type: 3}
+  m_Script: {fileID: 11500000, guid: 351c3f7ca07bd8f43b690ef8d4ec9c47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TESTINGDEBUGDISTANCES: []
-  DOODLEMASTERCOMPONENT: {fileID: 0}
-  _DoodlePointOutputVector2: []
-  Patterns:
-  - {fileID: 11400000, guid: 121a8d13b903a9542ad6c98d3685eed2, type: 2}
-  - {fileID: 11400000, guid: 3634cc28d80c0864ebe9a809e6d8e4de, type: 2}
-  - {fileID: 11400000, guid: 2ca092a0da4f2434fb4e99411783e947, type: 2}
-  OUTPUTLIST: []
---- !u!114 &1150252614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1150252610}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ec34ae2469cbfb49b8962515410bd2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _Keypointscale: 30000
-  _gridsize: 11
-  TrainingTarget: {fileID: 11400000, guid: 8b5c53d0e491c0c4898fb4e7d39c3e94, type: 2}
-  TrainingData:
-  - {fileID: 11400000, guid: 84fe0a12e6ba82d4f855061cc5488ec0, type: 2}
-  - {fileID: 11400000, guid: 34e5422d1004a054aa382590421dd7fe, type: 2}
-  - {fileID: 11400000, guid: b5b84085b54a9fe478eed63be38c763d, type: 2}
-  - {fileID: 11400000, guid: d378353f31ac67e4aa899c03a07fdb66, type: 2}
-  - {fileID: 11400000, guid: 0c75b07875b187748bfe5c260820f03f, type: 2}
-  - {fileID: 11400000, guid: 14a204d03888a7c42a5b26dbdac79da9, type: 2}
-  - {fileID: 11400000, guid: 8f2c2be601304454c83b568928500039, type: 2}
-  - {fileID: 11400000, guid: 7c233692a4b5ce04f91976d38ddee3a2, type: 2}
-  - {fileID: 11400000, guid: 9c0b76b8a35b92941bdb0c123a6f6cd6, type: 2}
-  - {fileID: 11400000, guid: 31485b6370d1c0e43b12674cd1b998b4, type: 2}
-  - {fileID: 11400000, guid: 65a73f3193562a242b6a79ef8ce6c58f, type: 2}
---- !u!114 &1150252615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1150252610}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2e4c3efd2949524aa3338851d05653f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DOODLEMASTERCOMPONENT: {fileID: 0}
-  _Keypointscale: 30000
+  RefShapes:
+  - {fileID: 11400000, guid: 5f21357f4d81d24408eeddb3b7bd7634, type: 2}
+  - {fileID: 11400000, guid: 96fe45be830f03c44875bea722f4f8a2, type: 2}
+  - {fileID: 11400000, guid: 3e4308c778769554682df7344a537956, type: 2}
+  - {fileID: 11400000, guid: 8c4cb83598186dd4194c911aeedc7b4b, type: 2}
+  DOODLEMASTERCOMPONENT: {fileID: 1150252611}
   _InputData: []
-  CookedShapeReferenceData:
-  - {fileID: 11400000, guid: f2aff346c44b7974b8cd6f227c203688, type: 2}
-  - {fileID: 11400000, guid: edca245e659d9534fb9aaae20e6e919d, type: 2}
-  - {fileID: 11400000, guid: 33e02da576d672b47997592bbd3a39a9, type: 2}
-  - {fileID: 11400000, guid: d947e74321a6f104c89ef34491328c3b, type: 2}
-  - {fileID: 11400000, guid: 8b5c53d0e491c0c4898fb4e7d39c3e94, type: 2}
-  - {fileID: 11400000, guid: 7a61052925055484fa8b18ac6a893978, type: 2}
---- !u!114 &1150252616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1150252610}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0aaac155b88a2b5478061032ed47753d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _DrawDebugGrid: 1
-  _gridsize: 11
-  _Keypointscale: 30000
-  _KeyGridControlPoints: []
-  TrainingTarget: {fileID: 11400000, guid: 9807e1b0409e95d448b44cccb4c59b40, type: 2}
-  TrainingData:
-  - {fileID: 11400000, guid: 84fe0a12e6ba82d4f855061cc5488ec0, type: 2}
-  - {fileID: 11400000, guid: 34e5422d1004a054aa382590421dd7fe, type: 2}
-  - {fileID: 11400000, guid: b5b84085b54a9fe478eed63be38c763d, type: 2}
-  - {fileID: 11400000, guid: d378353f31ac67e4aa899c03a07fdb66, type: 2}
-  - {fileID: 11400000, guid: 0c75b07875b187748bfe5c260820f03f, type: 2}
-  - {fileID: 11400000, guid: 14a204d03888a7c42a5b26dbdac79da9, type: 2}
-  - {fileID: 11400000, guid: 8f2c2be601304454c83b568928500039, type: 2}
-  - {fileID: 11400000, guid: 7c233692a4b5ce04f91976d38ddee3a2, type: 2}
-  - {fileID: 11400000, guid: 9c0b76b8a35b92941bdb0c123a6f6cd6, type: 2}
-  - {fileID: 11400000, guid: 31485b6370d1c0e43b12674cd1b998b4, type: 2}
-  - {fileID: 11400000, guid: 65a73f3193562a242b6a79ef8ce6c58f, type: 2}
---- !u!114 &1150252617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1150252610}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57d9c01924596144ba4a370ad9b31323, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DOODLEMASTERCOMPONENT: {fileID: 0}
-  _Keypointscale: 30000
-  _InputData: []
-  _ObservedMeanWeights: []
-  CookedShapes:
-  - {fileID: 11400000, guid: 3a2a70d65a067324d93a3171e9c9af2c, type: 2}
-  - {fileID: 11400000, guid: 406e9e4a1c5bfd546b9ac1e9d48c4b54, type: 2}
-  - {fileID: 11400000, guid: ae658e2d08fb4c84fa40282c9fc55610, type: 2}
-  - {fileID: 11400000, guid: 940b372477a2d744da7feca5d77b59b2, type: 2}
-  - {fileID: 11400000, guid: b136a88484ca66e42bd4753104633606, type: 2}
-  - {fileID: 11400000, guid: 9807e1b0409e95d448b44cccb4c59b40, type: 2}
+  ThresholdCost: 1000000
+  ExpectedArraySize: 400
 --- !u!1 &1482160322
 GameObject:
   m_ObjectHideFlags: 0
@@ -997,7 +818,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 403629059}
   - {fileID: 1150252612}
-  - {fileID: 792137507}
   - {fileID: 1682006572}
   - {fileID: 1482160324}
   - {fileID: 680277516}

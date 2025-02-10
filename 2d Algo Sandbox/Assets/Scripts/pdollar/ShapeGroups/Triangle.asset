@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeafe76f5e9c2154ebbe15d2904f2f33, type: 3}
+  m_Name: Triangle
+  m_EditorClassIdentifier: 
+  CurrentShape: 3
+  RawData:
+  - {fileID: 11400000, guid: 56ad6aa3f3d7e9a42a5e39f51d41f391, type: 2}
+  - {fileID: 11400000, guid: f783fa14e3af1734291e259319d01964, type: 2}
+  - {fileID: 11400000, guid: 0a3791c882632cc4ea7919076b6c54ef, type: 2}
+  - {fileID: 11400000, guid: 1d5573c8bce1ddb408a2cd0463358821, type: 2}
+  - {fileID: 11400000, guid: 26ae2fdad3ef8564695b9f32f33e0ed6, type: 2}
+  - {fileID: 11400000, guid: 661fb18bb8aba7a43aae450d90ff4fc4, type: 2}
+  CurrentAlignCost: 0

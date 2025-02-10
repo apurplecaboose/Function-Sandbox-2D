@@ -13,7 +13,7 @@ public class DoodleMasterOCR : MonoBehaviour
     [Header("DEV SETTINGS")]
     [SerializeField] int _devIndex = 0;
     public bool DEV_PATTERN_CREATION_MODE;
-    public List<RawTrainingData> RawTrainingData;
+    public List<RawShapes> RawTrainingData;
 
 
     [Header ("Attributes")]
