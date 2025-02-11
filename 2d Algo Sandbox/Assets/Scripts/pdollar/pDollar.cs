@@ -10,7 +10,7 @@ public class pDollar : MonoBehaviour
     Stopwatch _himark;
     [Header("ATTACH Data here")]
     public List<ShapeGroup> RefShapes;
-    [SerializeField]DoodleMasterOCR _DOODLEMASTERCOMPONENT;
+    DoodleMasterOCR _DOODLEMASTERCOMPONENT;
 
     
     [Header("Tweak values")]

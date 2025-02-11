@@ -13,5 +13,11 @@ MonoBehaviour:
   m_Name: G_LetterW
   m_EditorClassIdentifier: 
   CurrentShape: 7
-  RawData: []
+  RawData:
+  - {fileID: 11400000, guid: 962148dc7ba00634785e5fa87342a8f4, type: 2}
+  - {fileID: 11400000, guid: 64da1cb2ca0bfdf4390e92c0580ef905, type: 2}
+  - {fileID: 11400000, guid: a8e7a474034320645bd7cfe97e57432f, type: 2}
+  - {fileID: 11400000, guid: 66c433b0e696a5141aa7dabec90c0b1f, type: 2}
+  - {fileID: 11400000, guid: 822f6416d966b894bafb1090de6a723e, type: 2}
+  - {fileID: 11400000, guid: 26a6abefe7aba4a48a594f1069a98ea7, type: 2}
   CurrentAlignCost: 1853.142

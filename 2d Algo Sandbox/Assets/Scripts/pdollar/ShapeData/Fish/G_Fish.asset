@@ -13,5 +13,11 @@ MonoBehaviour:
   m_Name: G_Fish
   m_EditorClassIdentifier: 
   CurrentShape: 4
-  RawData: []
+  RawData:
+  - {fileID: 11400000, guid: 01f0720343638f64ebfa42578f4a7eee, type: 2}
+  - {fileID: 11400000, guid: 44a5fd77fb8a0ab44bb2a0b9b70ad835, type: 2}
+  - {fileID: 11400000, guid: 5bb02d42940c6f444a19e5742e5327e2, type: 2}
+  - {fileID: 11400000, guid: 875416b7806e16e409cb1d2c949c1fa4, type: 2}
+  - {fileID: 11400000, guid: 29ec2926b37c2c140858415964fabbb3, type: 2}
+  - {fileID: 11400000, guid: 415f5cc5ea6eaaf48b9f34397edf5621, type: 2}
   CurrentAlignCost: 1853.142

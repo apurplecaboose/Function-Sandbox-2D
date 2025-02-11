@@ -225,9 +225,93 @@ MonoBehaviour:
   m_GameObject: {fileID: 403629056}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e398678fe5498e4cb88f2974453b4d5, type: 3}
+  m_Script: {fileID: 11500000, guid: ccef206f0fbee61419db0480ae1341e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &758982530
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 758982532}
+  - component: {fileID: 758982531}
+  m_Layer: 0
+  m_Name: finalW
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &758982531
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758982530}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: a532a0b6dc8d2ac4c8cc1a9b70e8e859, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 10, y: 10}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &758982532
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758982530}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1150252610
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,11 +375,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RefShapes:
-  - {fileID: 11400000, guid: 5f21357f4d81d24408eeddb3b7bd7634, type: 2}
-  - {fileID: 11400000, guid: 96fe45be830f03c44875bea722f4f8a2, type: 2}
-  - {fileID: 11400000, guid: 3e4308c778769554682df7344a537956, type: 2}
-  - {fileID: 11400000, guid: 8c4cb83598186dd4194c911aeedc7b4b, type: 2}
-  _DOODLEMASTERCOMPONENT: {fileID: 0}
+  - {fileID: 11400000, guid: a5f8862dd34a9d840a56a7272f7b891f, type: 2}
+  - {fileID: 11400000, guid: f2998cbc73f5e684c972a30afc183d1f, type: 2}
+  - {fileID: 11400000, guid: da789067f15702e43a2565bde8a34cc6, type: 2}
+  - {fileID: 11400000, guid: 0ec19cc3ad2cd9944bb0600c41c95c9a, type: 2}
+  - {fileID: 11400000, guid: 738dfa63267ef684b8724d23fad6d9e7, type: 2}
+  - {fileID: 11400000, guid: 943fdcb923baf3648ae8c6a1f39d2b10, type: 2}
+  - {fileID: 11400000, guid: 903b76bc4c0ffbf40897d5e9a56bf8eb, type: 2}
+  - {fileID: 11400000, guid: 54ef619346173bd44802a18e1c67b764, type: 2}
+  - {fileID: 11400000, guid: d0f2298a741fa694b99461b371665fa1, type: 2}
+  - {fileID: 11400000, guid: f74c93cad81b1c047835b110b1906021, type: 2}
+  - {fileID: 11400000, guid: 9e7238a8126aee745a21d3659c44b810, type: 2}
+  - {fileID: 11400000, guid: 4352ef89a7734b444a3e5e32155ab957, type: 2}
+  - {fileID: 11400000, guid: 44eded8d547837f438edbf5dd32150b3, type: 2}
   ThresholdCost: 1000000
   ExpectedArraySize: 400
 --- !u!1660057539 &9223372036854775807
@@ -304,3 +396,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 403629059}
   - {fileID: 1150252612}
+  - {fileID: 758982532}

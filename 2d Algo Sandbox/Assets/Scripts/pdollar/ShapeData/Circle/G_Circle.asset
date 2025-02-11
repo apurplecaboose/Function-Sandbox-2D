@@ -13,5 +13,11 @@ MonoBehaviour:
   m_Name: G_Circle
   m_EditorClassIdentifier: 
   CurrentShape: 1
-  RawData: []
+  RawData:
+  - {fileID: 11400000, guid: 242f22c629e7d564f88e20517fbf36af, type: 2}
+  - {fileID: 11400000, guid: 6b205619203de9d4c984ded03ef843fe, type: 2}
+  - {fileID: 11400000, guid: e6da90a0300a10e41a0f4d2c9d8bf5d8, type: 2}
+  - {fileID: 11400000, guid: 68f365852e9553a4d95cb2216e79e0c9, type: 2}
+  - {fileID: 11400000, guid: 7e5390ff6b0e72247a688da05f4de5a1, type: 2}
+  - {fileID: 11400000, guid: 294d5fcaffc6de44392bb9e46b691493, type: 2}
   CurrentAlignCost: 1853.142

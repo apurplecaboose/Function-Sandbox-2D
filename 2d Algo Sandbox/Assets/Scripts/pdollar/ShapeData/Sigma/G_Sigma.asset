@@ -13,5 +13,11 @@ MonoBehaviour:
   m_Name: G_Sigma
   m_EditorClassIdentifier: 
   CurrentShape: 11
-  RawData: []
+  RawData:
+  - {fileID: 11400000, guid: c1b88ba951673c34395aec42c6671d09, type: 2}
+  - {fileID: 11400000, guid: 1026c3772871de040a4d1b228d9daa83, type: 2}
+  - {fileID: 11400000, guid: c9b5d1309d90e04419cf4483d1ef60a9, type: 2}
+  - {fileID: 11400000, guid: 1778b729f3224d74eaed89c204d26157, type: 2}
+  - {fileID: 11400000, guid: 6d6f27c3a7e6c354eb7708e915b6ccb4, type: 2}
+  - {fileID: 11400000, guid: bae811feb97933d4eba4abf13a084798, type: 2}
   CurrentAlignCost: 1853.142
