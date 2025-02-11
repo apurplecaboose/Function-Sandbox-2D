@@ -323,6 +323,7 @@ GameObject:
   - component: {fileID: 1150252612}
   - component: {fileID: 1150252611}
   - component: {fileID: 1150252613}
+  - component: {fileID: 1150252614}
   m_Layer: 0
   m_Name: DOODLE MASTER OCR
   m_TagString: Untagged
@@ -390,6 +391,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 44eded8d547837f438edbf5dd32150b3, type: 2}
   ThresholdCost: 1000000
   ExpectedArraySize: 400
+--- !u!114 &1150252614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150252610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 151fcfadc39317647b4d8cdf3c5ef448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CommenceDirtification: 0
+  ListOfCleanThingsThatShouldBeDirty: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

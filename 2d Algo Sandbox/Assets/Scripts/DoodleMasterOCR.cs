@@ -34,12 +34,6 @@ public class DoodleMasterOCR : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
             ClearDoodles();
-            if(shapegroups.Count==0) return;
-            foreach (ShapeGroup group in shapegroups)
-            {
-                HELPER_FUNCS.LetsGetDirty(group);
-            }
-            print("got dirty");
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
