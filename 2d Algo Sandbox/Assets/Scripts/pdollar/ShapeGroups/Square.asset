@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeafe76f5e9c2154ebbe15d2904f2f33, type: 3}
+  m_Name: Square
+  m_EditorClassIdentifier: 
+  CurrentShape: 2
+  RawData:
+  - {fileID: 11400000, guid: 193d3f702a8660045b27b7694c854202, type: 2}
+  - {fileID: 11400000, guid: 8b6d66c5e55fc414c9a98cfedbb454e5, type: 2}
+  - {fileID: 11400000, guid: 08be4d50e57b3a04aadba5c5fc249265, type: 2}
+  - {fileID: 11400000, guid: f77c8d6e8f090d049a7e5221aa6f1d17, type: 2}
+  - {fileID: 11400000, guid: 8abdfa8be4ce1784582f2110cc7062e6, type: 2}
+  - {fileID: 11400000, guid: ada68d6313166114ea085e510c17553b, type: 2}
+  - {fileID: 11400000, guid: c628d2af3a8e14243b6ebfe7d5730a6d, type: 2}
+  - {fileID: 11400000, guid: e11c9130fbc448a4998bd75b28b35299, type: 2}
+  - {fileID: 11400000, guid: 79c54600cec80cb4889de9ad09beee09, type: 2}
+  - {fileID: 11400000, guid: 0d488694ac5e3f84d834cfc9951fa376, type: 2}
+  - {fileID: 11400000, guid: add15ad98b753eb429d1f36587f43cbb, type: 2}
+  CurrentAlignCost: 2014.504

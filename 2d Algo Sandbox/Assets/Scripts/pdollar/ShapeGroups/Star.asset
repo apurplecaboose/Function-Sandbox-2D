@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeafe76f5e9c2154ebbe15d2904f2f33, type: 3}
+  m_Name: Star
+  m_EditorClassIdentifier: 
+  CurrentShape: 6
+  RawData:
+  - {fileID: 11400000, guid: 20c90d5082046a841a778894d15bbaab, type: 2}
+  - {fileID: 11400000, guid: 0fb7364ff0440294293ead57a9753237, type: 2}
+  - {fileID: 11400000, guid: 93589fe4eed3ef04a8fcb5500cddc38c, type: 2}
+  - {fileID: 11400000, guid: 998d7679c3297cb4cb343ff986e8eb28, type: 2}
+  - {fileID: 11400000, guid: 41d0c8c2ff1bfda4bb623c5ff9ca2fb4, type: 2}
+  - {fileID: 11400000, guid: 80ec0e11dd9a8ec43b0f19caf6016e16, type: 2}
+  - {fileID: 11400000, guid: 15815f1b476e88d45b09d42f27e1308e, type: 2}
+  - {fileID: 11400000, guid: 506e0214d827b6044badd0c29972660a, type: 2}
+  - {fileID: 11400000, guid: 54976197d4b54954db30e26e6dccd6d1, type: 2}
+  - {fileID: 11400000, guid: 43f9e34a762a63e43b39d120381b6430, type: 2}
+  - {fileID: 11400000, guid: b2073df91cde9e04ba1a2b2eba650f6a, type: 2}
+  CurrentAlignCost: 325.3305
