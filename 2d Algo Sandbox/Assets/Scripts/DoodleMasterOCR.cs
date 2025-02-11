@@ -4,10 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 public class DoodleMasterOCR : MonoBehaviour
 {
     [Header("ATTACH")]
@@ -17,13 +13,17 @@ public class DoodleMasterOCR : MonoBehaviour
     [SerializeField] int _devIndex = 0;
     public bool DEV_PATTERN_CREATION_MODE;
     public List<RawShapes> RawTrainingData;
-    public List<ShapeGroup> shapegroups;
+    List<ShapeGroup> shapegroups;
 
     [Header ("Attributes")]
     DoodleOCR _currentDoodler;
-    [SerializeField] List<DoodleOCR> _DoodlesList; // currently serialized for visibility
-    public List<Vector3> DrawingOutput; // x,y,doodlenumber
+    /*[SerializeField]*/ List<DoodleOCR> _DoodlesList; // currently serialized for visibility
+    [HideInInspector] public List<Vector3> DrawingOutput; // x,y,doodlenumber
 
+    void Awake()
+    {
+        _DoodlesList = new List<DoodleOCR>();
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -34,6 +34,7 @@ public class DoodleMasterOCR : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
             ClearDoodles();
+            if(shapegroups.Count==0) return;
             foreach (ShapeGroup group in shapegroups)
             {
                 HELPER_FUNCS.LetsGetDirty(group);

@@ -21,6 +21,7 @@ public class DoodleOCR : MonoBehaviour
     int _targetArraysize = 400;
     void OnDrawGizmos()
     {
+        if (_PointsListRaw.Count <= 0) return;
         foreach (Vector2 vec2point in _PointsListRaw) 
             {
             Gizmos.DrawSphere(new Vector3(vec2point.x, vec2point.y, 0), 0.1125f);
