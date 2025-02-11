@@ -18,7 +18,7 @@ public class DoodleOCR : MonoBehaviour
           _targetPathLength = 50;
     bool _CutOff;
 
-    int _targetArraysize = 400;
+    int _targetArraysize = 50;
     void OnDrawGizmos()
     {
         if (_PointsListRaw.Count <= 0) return;
@@ -30,7 +30,7 @@ public class DoodleOCR : MonoBehaviour
     void Awake()
     {
         _LineRend = this.GetComponent<LineRenderer>();
-        _stopwatch=new Stopwatch();
+        //_stopwatch=new Stopwatch();
     }
     void Update()
     {
@@ -91,7 +91,8 @@ public class DoodleOCR : MonoBehaviour
     }
     public List<Vector3> ExportCleanPointCloud(int doodleNumber)
     {
-        _stopwatch.Start();
+        //_stopwatch.Start();
+        _CutOff = true ;
         Vector2 AABB_center = CalculateCentroid(_PointsListRaw); // find center of point cloud
         _PointsListRaw = PruneAndTrim(_PointsListRaw, 5f, _MinPointDistance * 1.5f);//angle gating
         //get line length
@@ -152,9 +153,9 @@ public class DoodleOCR : MonoBehaviour
             returnList.Add(new Vector3(drawpoint.x, drawpoint.y, doodleNumber));
         }
 
-        _stopwatch.Stop();
-        long elapsedMilliseconds = _stopwatch.ElapsedMilliseconds;
-        UnityEngine.Debug.Log("Exporting Doodler Output!    Time in ms: " + elapsedMilliseconds + "     array count is" + _PointsListRaw.Count);
+        //_stopwatch.Stop();
+        //long elapsedMilliseconds = _stopwatch.ElapsedMilliseconds;
+        //UnityEngine.Debug.Log("Exporting Doodler Output!    Time in ms: " + elapsedMilliseconds + "     array count is" + _PointsListRaw.Count);
         return returnList;  
     }
 

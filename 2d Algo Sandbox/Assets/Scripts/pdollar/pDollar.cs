@@ -15,7 +15,7 @@ public class pDollar : MonoBehaviour
     
     [Header("Tweak values")]
     public float ThresholdCost = 1000000;
-    public int ExpectedArraySize = 400;
+    int _ExpectedArraySize = 50;
 
     List<Vector2> _currentPatternData;
     List<Vector2> _InputData;
@@ -42,7 +42,7 @@ public class pDollar : MonoBehaviour
     }
     void MatchShapes()
     {
-        if (_InputData.Count < ExpectedArraySize)
+        if (_InputData.Count < _ExpectedArraySize)
         {
             print("Null Pattern not enough data this is probably a point");
             //null pattern
