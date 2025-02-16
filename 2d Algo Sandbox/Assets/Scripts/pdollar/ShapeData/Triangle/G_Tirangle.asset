@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aeafe76f5e9c2154ebbe15d2904f2f33, type: 3}
   m_Name: G_Tirangle
   m_EditorClassIdentifier: 
-  CurrentShape: 3
+  CurrentShape: 4
   RawData:
   - {fileID: 11400000, guid: 518d76fa11ba87a449ceb52d6c0a348d, type: 2}
   - {fileID: 11400000, guid: a415fe6157b29c3468998f2d40baaa36, type: 2}
@@ -20,4 +20,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 94ba48c753e51e645a06134ef987fba2, type: 2}
   - {fileID: 11400000, guid: e8e3a87b427401344a18acc2103ded19, type: 2}
   - {fileID: 11400000, guid: c5df3539dc8d78b4eb61ef6b297da355, type: 2}
-  CurrentAlignCost: 1853.142
+  CurrentAlignCost: 118.9696

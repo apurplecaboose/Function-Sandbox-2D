@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aeafe76f5e9c2154ebbe15d2904f2f33, type: 3}
   m_Name: G_Sine
   m_EditorClassIdentifier: 
-  CurrentShape: 13
+  CurrentShape: 14
   RawData:
   - {fileID: 11400000, guid: 2febaaf96212f6546ba759fc7c208165, type: 2}
   - {fileID: 11400000, guid: 19eb1b40cd6702948866b146de41d0de, type: 2}
@@ -20,4 +20,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: eae1be4378d4eb140a1bd20b5257c531, type: 2}
   - {fileID: 11400000, guid: 26efc0e3e02e6b64086740bb1e5c49f5, type: 2}
   - {fileID: 11400000, guid: 86a34715f70fef84e98b72960a69c204, type: 2}
-  CurrentAlignCost: 325.3305
+  CurrentAlignCost: Infinity

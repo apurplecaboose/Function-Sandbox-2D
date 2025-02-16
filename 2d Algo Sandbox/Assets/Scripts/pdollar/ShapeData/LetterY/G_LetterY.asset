@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aeafe76f5e9c2154ebbe15d2904f2f33, type: 3}
   m_Name: G_LetterY
   m_EditorClassIdentifier: 
-  CurrentShape: 8
+  CurrentShape: 9
   RawData:
   - {fileID: 11400000, guid: 4760af56038f8e848ab7be67e36bb5b4, type: 2}
   - {fileID: 11400000, guid: 01be014b525d2a04da92f5564914bbef, type: 2}
@@ -20,4 +20,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 313fa8d5304e3aa4fb881690dbc097d2, type: 2}
   - {fileID: 11400000, guid: 9b9c9eaf5ce41ce47b13938b61c9aa0d, type: 2}
   - {fileID: 11400000, guid: feb0711242e76eb4c8c80a112acf1599, type: 2}
-  CurrentAlignCost: 4634.621
+  CurrentAlignCost: Infinity

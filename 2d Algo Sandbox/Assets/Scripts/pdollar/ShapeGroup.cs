@@ -8,6 +8,7 @@ public class ShapeGroup : ScriptableObject
     public enum SubShape
     {
         NULL,
+        POINT,
         Circle,
         Square,
         Triangle,
@@ -27,4 +28,5 @@ public class ShapeGroup : ScriptableObject
     public List<RawShapes> RawData;
 
     public float CurrentAlignCost;
+    public float ShapeAlignCost_Threshold = Mathf.Infinity;
 }

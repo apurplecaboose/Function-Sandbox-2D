@@ -14,10 +14,9 @@ public class pDollar : MonoBehaviour
 
     
     [Header("Tweak values")]
-    public float ThresholdCost = 1000000;
     int _ExpectedArraySize = 50;
 
-    List<Vector2> _currentPatternData;
+    List<Vector2> _currentPatternData; // the local varible version is not working.... so use private var here
     List<Vector2> _InputData;
     void Start()
     {
@@ -40,56 +39,53 @@ public class pDollar : MonoBehaviour
             UnityEngine.Debug.Log("Done Matching! Time in ms:   " + elapsedMilliseconds);
         }
     }
-    void MatchShapes()
+    ShapeGroup.SubShape MatchShapes()
     {
         if (_InputData.Count < _ExpectedArraySize)
         {
             print("Null Pattern not enough data this is probably a point");
             //null pattern
-            return;
+            return ShapeGroup.SubShape.POINT;
         }
-        List<float> alignmentcosts = new List<float>();
+        float min_overall_aligmentcost = Mathf.Infinity;//set the lowest cost to absurdly high value
+        float thresholdCost = Mathf.Infinity;
+        ShapeGroup.SubShape lowestcostShapeEnum = ShapeGroup.SubShape.NULL; // initalize local var
         foreach (var shape in RefShapes)
         {
-            shape.CurrentAlignCost = 10000000000000000; // reset old data
-            List<float> variations_alignmentcost = new List<float>();
+            shape.CurrentAlignCost = 10000000000000000; // reset old data to something arbitrarly high as a catch case
+            float min_var_alignmentcost = Mathf.Infinity;//set the lowest cost to absurdly high value
             foreach (var variation in shape.RawData)
             {
                 _currentPatternData.Clear();
                 _currentPatternData.AddRange(variation.RawVector2DataPoints);
 
-                //List<Vector2> currentPatternCopy = variation.RawVector2DataPoints;
-
                 float var_alignmentcost = 0;
                 foreach (Vector2 in_v in _InputData)
                 {
-                    var output = NearestNeighbor_OnePoint(in_v, _currentPatternData);
-                    _currentPatternData.Remove(output.Item1); // remove the pair from the list
-                    //var output = NearestNeighbor_OnePoint(in_v, currentPatternCopy);
-                    //currentPatternCopy.Remove(output.Item1); // remove the pair from the list
+                    if (var_alignmentcost > min_overall_aligmentcost) break; // if larger than the current overall smallest;break
+                    if (var_alignmentcost > min_var_alignmentcost) break; //if larger than the other variations; break
+                    var output = NearestNeighbor_OnePoint(in_v, _currentPatternData);                 
+                    _currentPatternData.Remove(output.Item1); // remove the pair from the list from points that need to be checked
                     var_alignmentcost += output.Item2;
                 }
-                variations_alignmentcost.Add(var_alignmentcost);
+                if(var_alignmentcost < min_overall_aligmentcost) min_var_alignmentcost = var_alignmentcost;//find the min without using list.min    if less than current min, then it is the new min
             }
-            float alignCost = variations_alignmentcost.Min();
+            float alignCost = min_var_alignmentcost;
             shape.CurrentAlignCost = alignCost;
-            alignmentcosts.Add(alignCost);
-        }
-        float lowestcost = alignmentcosts.Min();
-        if (lowestcost > ThresholdCost)
-        {
-            print("Null Pattern u prob drew garbage. Align cost:    " + lowestcost);
-            return;
-            //return null pattern error
-        }
-        foreach (var shape in RefShapes)
-        {
-            if (lowestcost == shape.CurrentAlignCost)
+            if (alignCost < min_overall_aligmentcost)//find the min without using list.min; also cache the enum
             {
-                print("Pattern: " + shape.CurrentShape.ToString() + "   Match Cost: " + lowestcost);
-                return;
+                min_overall_aligmentcost = alignCost;
+                lowestcostShapeEnum = shape.CurrentShape;
+                thresholdCost = shape.ShapeAlignCost_Threshold;
             }
         }
+        if (min_overall_aligmentcost > thresholdCost)
+        {
+            print("Null Pattern u prob drew garbage. Align cost:    " + min_overall_aligmentcost);
+            return ShapeGroup.SubShape.NULL;
+        }
+        print("Pattern: " + lowestcostShapeEnum.ToString() + "   Match Cost: " + min_overall_aligmentcost);
+        return lowestcostShapeEnum;
     }
     (Vector2, float) NearestNeighbor_OnePoint(Vector2 inputPoint, List<Vector2> inputMatchList)
     {

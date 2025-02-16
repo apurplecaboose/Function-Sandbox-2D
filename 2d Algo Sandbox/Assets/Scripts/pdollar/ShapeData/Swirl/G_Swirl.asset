@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aeafe76f5e9c2154ebbe15d2904f2f33, type: 3}
   m_Name: G_Swirl
   m_EditorClassIdentifier: 
-  CurrentShape: 12
+  CurrentShape: 13
   RawData:
   - {fileID: 11400000, guid: c0215f305891aba448b4ff74cee9faf2, type: 2}
   - {fileID: 11400000, guid: 6542d9c6cb70df04cabe8447c5270d6f, type: 2}
@@ -20,4 +20,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a4f8b1c0f554a464eb6258d2cc37095a, type: 2}
   - {fileID: 11400000, guid: 7fd5648087d126145bbf41c52f649eed, type: 2}
   - {fileID: 11400000, guid: 1662c2a48de3b3f48a6d543b358b6ee1, type: 2}
-  CurrentAlignCost: 1853.142
+  CurrentAlignCost: Infinity
