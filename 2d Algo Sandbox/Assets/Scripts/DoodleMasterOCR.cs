@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 using System.Reflection;
 using UnityEditor;
 using System.Threading.Tasks;
@@ -28,11 +27,12 @@ public class DoodleMasterOCR : MonoBehaviour
     }
     void Update()
     {
-        if (DEV_PATTERN_CREATION_MODE)
+        if (DEV_PATTERN_CREATION_MODE) // turns off dev mode if there is no patterns in the array
         {
             if(RawTrainingData.Count == 0)
             {
                 DEV_PATTERN_CREATION_MODE = false;
+                Debug.Log("DEV MODE OFF - No input patterns detected");
                 return;
             }
             Debug.Log("NEXT PATTERN:    " + RawTrainingData[_devIndex].name);
@@ -75,7 +75,7 @@ public class DoodleMasterOCR : MonoBehaviour
         exporting = false;
         await Task.Yield();
     }
-    public void SetALLDOODLESColor(Color targetColor, float targetAlpha)
+    void SetALLDOODLESColor(Color targetColor, float targetAlpha)
     {
         // SUBSIGIL DRAWING DONE
         foreach (DoodleOCR d in _DoodlesList)
@@ -86,11 +86,12 @@ public class DoodleMasterOCR : MonoBehaviour
     public void ClearDoodles()
     {
         print("CLEARING DOODLES!!!");
-        if(DEV_PATTERN_CREATION_MODE)
+#if UNITY_EDITOR
+        if (DEV_PATTERN_CREATION_MODE)
         {
             ClearConsole();
         }
-
+#endif
         foreach (DoodleOCR d in _DoodlesList)
         {
             Destroy(d.gameObject);
@@ -98,6 +99,7 @@ public class DoodleMasterOCR : MonoBehaviour
         _DoodlesList.Clear();
         DrawingOutput.Clear();
     }
+#if UNITY_EDITOR
     void DEV_PatternCreation()
     {
         if (!DEV_PATTERN_CREATION_MODE) return;
@@ -121,7 +123,7 @@ public class DoodleMasterOCR : MonoBehaviour
                 tempoutputlist.Add(new Vector2(datapoint.x, datapoint.y));
             }
         }
-#if UNITY_EDITOR
+
         if (RawTrainingData != null)
         {
             if (_devIndex >= RawTrainingData.Count) { Debug.Log("DONE RECORDING!!!!!!!!!!!!!!"); return; }
@@ -129,7 +131,7 @@ public class DoodleMasterOCR : MonoBehaviour
             HELPER_FUNCS.LetsGetDirty(RawTrainingData[_devIndex]);
             //print("Getting Dirty");
         }
-#endif
+
         //increment next drawing for training data
         _devIndex += 1;
         ClearDoodles();
@@ -141,4 +143,5 @@ public class DoodleMasterOCR : MonoBehaviour
         var method = type.GetMethod("Clear");
         method.Invoke(new object(), null);
     }
+#endif
 }

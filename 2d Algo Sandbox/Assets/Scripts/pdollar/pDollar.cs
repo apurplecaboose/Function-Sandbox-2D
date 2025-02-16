@@ -12,7 +12,6 @@ public class pDollar : MonoBehaviour
     public List<ShapeGroup> RefShapes;
     DoodleMasterOCR _DOODLEMASTERCOMPONENT;
 
-    
     [Header("Tweak values")]
     int _ExpectedArraySize = 50;
 
@@ -52,7 +51,7 @@ public class pDollar : MonoBehaviour
         ShapeGroup.SubShape lowestcostShapeEnum = ShapeGroup.SubShape.NULL; // initalize local var
         foreach (var shape in RefShapes)
         {
-            shape.CurrentAlignCost = 10000000000000000; // reset old data to something arbitrarly high as a catch case
+            //shape.CurrentAlignCost = Mathf.Infinity; //currently only writing to scriptable align cost never reading value may not be nessicary;
             float min_var_alignmentcost = Mathf.Infinity;//set the lowest cost to absurdly high value
             foreach (var variation in shape.RawData)
             {
@@ -71,7 +70,7 @@ public class pDollar : MonoBehaviour
                 if(var_alignmentcost < min_overall_aligmentcost) min_var_alignmentcost = var_alignmentcost;//find the min without using list.min    if less than current min, then it is the new min
             }
             float alignCost = min_var_alignmentcost;
-            shape.CurrentAlignCost = alignCost;
+            //shape.CurrentAlignCost = alignCost;
             if (alignCost < min_overall_aligmentcost)//find the min without using list.min; also cache the enum
             {
                 min_overall_aligmentcost = alignCost;

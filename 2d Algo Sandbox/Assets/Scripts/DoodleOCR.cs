@@ -152,10 +152,6 @@ public class DoodleOCR : MonoBehaviour
         {
             returnList.Add(new Vector3(drawpoint.x, drawpoint.y, doodleNumber));
         }
-
-        //_stopwatch.Stop();
-        //long elapsedMilliseconds = _stopwatch.ElapsedMilliseconds;
-        //UnityEngine.Debug.Log("Exporting Doodler Output!    Time in ms: " + elapsedMilliseconds + "     array count is" + _PointsListRaw.Count);
         return returnList;  
     }
 
