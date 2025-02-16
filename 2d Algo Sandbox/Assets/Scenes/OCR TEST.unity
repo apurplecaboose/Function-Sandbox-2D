@@ -228,6 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccef206f0fbee61419db0480ae1341e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RESET_SCENE: 114
 --- !u!1 &758982530
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,8 +468,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9e7238a8126aee745a21d3659c44b810, type: 2}
   - {fileID: 11400000, guid: 4352ef89a7734b444a3e5e32155ab957, type: 2}
   - {fileID: 11400000, guid: 44eded8d547837f438edbf5dd32150b3, type: 2}
-  SSG: {fileID: 0}
-  ThresholdCost: 250
 --- !u!114 &1150252614
 MonoBehaviour:
   m_ObjectHideFlags: 0

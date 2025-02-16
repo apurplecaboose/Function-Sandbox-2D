@@ -128,7 +128,7 @@ public class DoodleMasterOCR : MonoBehaviour
         {
             if (_devIndex >= RawTrainingData.Count) { Debug.Log("DONE RECORDING!!!!!!!!!!!!!!"); return; }
             RawTrainingData[_devIndex].RawVector2DataPoints = tempoutputlist;
-            HELPER_FUNCS.LetsGetDirty(RawTrainingData[_devIndex]);
+            Universal_Functions.LetsGetDirty(RawTrainingData[_devIndex]);
             //print("Getting Dirty");
         }
 

@@ -5,15 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class SceneReset : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    public KeyCode RESET_SCENE = KeyCode.F5;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R)) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if (Input.GetKeyDown(RESET_SCENE)) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

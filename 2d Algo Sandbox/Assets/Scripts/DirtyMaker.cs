@@ -12,7 +12,7 @@ public class DirtyMaker : MonoBehaviour
         if(!CommenceDirtification) return;
         foreach (var v in ListOfCleanThingsThatShouldBeDirty)
         {
-           HELPER_FUNCS.LetsGetDirty(v);
+           Universal_Functions.LetsGetDirty(v);
         }
     }
 }

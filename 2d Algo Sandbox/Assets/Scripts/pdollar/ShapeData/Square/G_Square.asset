@@ -21,3 +21,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 661fa439b0a06bf4d99a86a8045fdbf7, type: 2}
   - {fileID: 11400000, guid: 932ec33e80859614785acdcb3da282ed, type: 2}
   CurrentAlignCost: Infinity
+  ShapeAlignCost_Threshold: 0

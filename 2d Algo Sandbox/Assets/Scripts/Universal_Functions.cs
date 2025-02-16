@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public static class HELPER_FUNCS
+public static class Universal_Functions
 {
     public static float ABS_Z_Score(float observed, float mean, float std)
     {
-        float output = Mathf.Abs((observed - mean) / std);
+        float output = Mathf.Abs((observed - mean) / std);   
         return output;
     }
+    
     public static float CalculateStdDev(List<float> data)
     {
         // Calculate mean
